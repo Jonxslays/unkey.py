@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "unkey"
+name = "unkey.py"
 version = "0.1.0"
 description = "An asynchronous Python SDK for unkey.dev."
 authors = ["Jonxslays"]
