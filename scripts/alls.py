@@ -5,9 +5,7 @@ import unkey
 
 
 def should_include_module(module: str) -> bool:
-    return (
-        module != "annotations" and module[0] != "_" and module[0].upper() != module[0]
-    )
+    return module != "annotations" and module[0] != "_" and module[0].upper() != module[0]
 
 
 def get_modules() -> t.List[str]:
@@ -27,15 +25,11 @@ def validate_alls() -> None:
     err = None
 
     if missing := modules - lib:
-        err = "Missing exported items at top level:\n" + "\n".join(
-            f" - {m}" for m in missing
-        )
+        err = "Missing exported items at top level:\n" + "\n".join(f" - {m}" for m in missing)
         print(err, file=sys.stderr)
 
     if missing := lib - modules:
-        err = "Missing exported items at module level:\n" + "\n".join(
-            f" - {m}" for m in missing
-        )
+        err = "Missing exported items at module level:\n" + "\n".join(f" - {m}" for m in missing)
         print(err, file=sys.stderr)
 
     if err:
