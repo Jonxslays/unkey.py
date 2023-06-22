@@ -1,6 +1,6 @@
 # unkey.py
 
-An asynchronous Python SDK for unkey.dev.
+An asynchronous Python SDK for [unkey.dev](https://unkey.dev/).
 
 ## License
 
