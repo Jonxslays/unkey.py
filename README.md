@@ -20,10 +20,23 @@ pip install -U git+https://github.com/Jonxslays/unkey.py
 
 For more information on using `pip`, check out the [pip documentation](https://pip.pypa.io/en/stable/).
 
+## What is unkey.dev
+
+unkey.dev is a fully open source API key management solution. It allows you to create,
+manage, and validate API keys for your applications users. You can even host it yourself,
+that's the beauty of open source.
+
+If you're interested in learning more about the project, consider checking out any of these links:
+
+- [Website](https://unkey.dev/)
+- [API documentation](https://docs.unkey.dev/)
+- [Github repository](https://github.com/chronark/unkey)
+- [Discord community](https://discord.gg/TmMczTKArw)
+
 ## Contributing
 
 unkey.py is open to contributions. Check out the
-[contributing guide](https://github.com/Jonxslays/wom.py/blob/master/CONTRIBUTING.md) to learn how.
+[contributing guide](https://github.com/Jonxslays/unkey.py/blob/master/CONTRIBUTING.md) to learn how.
 
 ## License
 
