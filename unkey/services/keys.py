@@ -47,8 +47,8 @@ class KeyService(BaseService):
             meta: An optional dynamic mapping of information used to
                 provide context around this keys user.
 
-            expires: The optional unix epoch expiration for this key
-                in milliseconds.
+            expires: The optional number of milliseconds into the future
+                when this key should expire.
 
             ratelimit: The optional Ratelimit to set on this key.
 
@@ -80,17 +80,17 @@ class KeyService(BaseService):
 
         return result.Ok(self._serializer.to_api_key(data))
 
-    async def verify_key(self, key_id: str) -> ResultT[models.ApiKeyVerification]:
+    async def verify_key(self, key: str) -> ResultT[models.ApiKeyVerification]:
         """Verifies a key is valid and within ratelimit.
 
         Args:
-            key_id: The id of the key to verify.
+            key: The key to verify.
 
         Returns:
             A result containing the api key verification or an error.
         """
         route = routes.VERIFY_KEY.compile()
-        payload = self._generate_map(key=key_id)
+        payload = self._generate_map(key=key)
         data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):

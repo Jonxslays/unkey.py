@@ -20,7 +20,7 @@ class Client:
         api_version: The api version to access. Defaults to 1.
 
         api_base_url: The base url to use for the api (no trailing /).
-        Defaults to `https://api.unkey.dev`.
+            Defaults to `https://api.unkey.dev`.
     """
 
     __slots__ = (
@@ -58,7 +58,7 @@ class Client:
 
     @property
     def apis(self) -> services.ApiService:
-        """The key service used to make key related requests."""
+        """The api service used to make api related requests."""
         return self._apis
 
     def set_api_key(self, api_key: str) -> None:
