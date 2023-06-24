@@ -19,14 +19,17 @@ class HttpService:
     Args:
         api_key: The api key to use.
 
+        api_version: The version of the api to use.
+
         api_base_url: The optional api base url to use.
     """
 
-    __slots__ = ("_base_url", "_headers", "_method_mapping", "_session")
+    __slots__ = ("_api_version", "_base_url", "_headers", "_method_mapping", "_session")
 
     def __init__(
         self,
         api_key: str,
+        api_version: t.Optional[int],
         api_base_url: t.Optional[str],
     ) -> None:
         self._headers = {
@@ -34,6 +37,7 @@ class HttpService:
             "Authorization": f"Bearer {api_key}",
         }
 
+        self._api_version = f"/v{api_version}"
         self._base_url = api_base_url or constants.API_BASE_URL
 
     async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
@@ -130,7 +134,7 @@ class HttpService:
         """
         return await self._request(  # type: ignore[no-any-return]
             self._get_request_func(route.method),
-            self._base_url + route.uri,
+            self._base_url + self._api_version + route.uri,
             headers=self._headers,
             params=route.params,
             json=payload or None,
