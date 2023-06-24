@@ -26,8 +26,12 @@ class BaseModel:
 class BaseEnum(Enum):
     """The base enum all library enums inherit from."""
 
+    __slots__ = ()
+
+    value: str  # pyright: ignore
+
     def __str__(self) -> str:
-        return self.value  # type: ignore[no-any-return]
+        return self.value
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
