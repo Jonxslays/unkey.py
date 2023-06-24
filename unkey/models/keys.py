@@ -13,7 +13,7 @@ class RateLimitType(BaseEnum):
     Consistent = "consistent"
 
 
-@attrs.define(init=False, weakref_slot=False)
+@attrs.define(weakref_slot=False)
 class RateLimit(BaseModel):
     """Data representing a particular ratelimit."""
 
