@@ -31,23 +31,21 @@ class KeyService(BaseService):
         ratelimit: t.Optional[models.RateLimit] = None,
     ) -> ResultT[models.ApiKey]:
         route = routes.CREATE_KEY.compile()
-        ratelimit_data = None
-
-        if ratelimit:
-            ratelimit_data = self._generate_map(
-                type=str(ratelimit.type),
-                limit=ratelimit.limit,
-                refillRate=ratelimit.refill_rate,
-                refillInterval=ratelimit.refill_interval,
-            )
         payload = self._generate_map(
             meta=meta,
             apiId=api_id,
             prefix=prefix,
             ownerId=owner_id,
             byteLength=byte_length,
-            ratelimit=ratelimit_data,
             expires=self._expires_in(milliseconds=expires or 0),
+            ratelimit=None
+            if not ratelimit
+            else self._generate_map(
+                limit=ratelimit.limit,
+                type=ratelimit.type.value,
+                refillRate=ratelimit.refill_rate,
+                refillInterval=ratelimit.refill_interval,
+            ),
         )
 
         data = await self._http.fetch(route, payload=payload)
