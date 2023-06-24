@@ -12,6 +12,12 @@ E = t.TypeVar("E")
 
 
 class Result(t.Generic[T, E], abc.ABC):
+    """Represents a potential `Ok` or `Err` result.
+
+    Note:
+        This class can not be instantiated, only its variants can.
+    """
+
     __slots__ = ("_error", "_value")
 
     def __repr__(self) -> str:
@@ -21,20 +27,34 @@ class Result(t.Generic[T, E], abc.ABC):
     @property
     @abc.abstractmethod
     def is_ok(self) -> bool:
-        ...
+        """`True` if this result is the `Ok` variant."""
 
     @property
     @abc.abstractmethod
     def is_err(self) -> bool:
-        ...
+        """`True` if this result is the `Err` variant."""
 
     @abc.abstractmethod
     def unwrap(self) -> T:
-        ...
+        """Unwraps the result to produce the value.
+
+        Returns:
+            The unwrapped value.
+
+        Raises:
+            UnwrapError: If the result was an `Err` and not `Ok`.
+        """
 
     @abc.abstractmethod
     def unwrap_err(self) -> E:
-        ...
+        """Unwraps the result to produce the error.
+
+        Returns:
+            The unwrapped error.
+
+        Raises:
+            UnwrapError: If the result was `Ok` and not an `Err`.
+        """
 
 
 @t.final

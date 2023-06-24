@@ -60,13 +60,15 @@ class ApiKeyMeta(BaseModel):
     """The prefix and beginning 3 letters of the key."""
 
     created_at: int
-    """The unix epoch representing when this key was created."""
+    """The unix epoch representing when this key was created in
+    milliseconds."""
 
     owner_id: t.Optional[str]
     """The owner of this api key if one was specified."""
 
     expires: t.Optional[int]
-    """The optional unix epoch representing when this key expires."""
+    """The optional unix epoch representing when this key expires in
+    milliseconds."""
 
     ratelimit: t.Optional[Ratelimit]
     """The optional ratelimit associated with this key."""

@@ -30,6 +30,31 @@ class KeyService(BaseService):
         expires: t.Optional[int] = None,
         ratelimit: t.Optional[models.Ratelimit] = None,
     ) -> ResultT[models.ApiKey]:
+        """Creates a new api key.
+
+        Args:
+            api_id: The id of the api this key is for.
+
+            owner_id: The owner id to use for this key. Represents the
+                user who will use this key.
+
+            prefix: The prefix to place at the beginning of the key.
+
+        Keyword Args:
+            byte_length: The optional desired length of they in bytes.
+                Defaults to 16.
+
+            meta: An optional dynamic mapping of information used to
+                provide context around this keys user.
+
+            expires: The optional unix epoch expiration for this key
+                in milliseconds.
+
+            ratelimit: The optional Ratelimit to set on this key.
+
+        Returns:
+            A result containing the requested information or an error.
+        """
         route = routes.CREATE_KEY.compile()
         payload = self._generate_map(
             meta=meta,
@@ -55,9 +80,17 @@ class KeyService(BaseService):
 
         return result.Ok(self._serializer.to_api_key(data))
 
-    async def verify_key(self, key: str) -> ResultT[models.ApiKeyVerification]:
+    async def verify_key(self, key_id: str) -> ResultT[models.ApiKeyVerification]:
+        """Verifies a key is valid and within ratelimit.
+
+        Args:
+            key_id: The id of the key to verify.
+
+        Returns:
+            A result containing the api key verification or an error.
+        """
         route = routes.VERIFY_KEY.compile()
-        payload = self._generate_map(key=key)
+        payload = self._generate_map(key=key_id)
         data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):
@@ -66,6 +99,14 @@ class KeyService(BaseService):
         return result.Ok(self._serializer.to_api_key_verification(data))
 
     async def revoke_key(self, key_id: str) -> ResultT[models.HttpResponse]:
+        """Revokes a keys validity.
+
+        Args:
+            key_id: The id of the key to revoke.
+
+        Returns:
+            A result containing the http response or an error.
+        """
         route = routes.REVOKE_KEY.compile(key_id)
         data: str | models.HttpResponse = await self._http.fetch(route)  # type: ignore
 

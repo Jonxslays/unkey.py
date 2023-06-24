@@ -11,7 +11,17 @@ ServiceT = t.TypeVar("ServiceT")
 
 
 class Client:
-    """An asynchronous client used for interacting with the API."""
+    """An asynchronous client used for interacting with the API.
+
+    Args:
+        api_key: The root api key to use for requests.
+
+    Keyword Args:
+        api_version: The api version to access. Defaults to 1.
+
+        api_base_url: The base url to use for the api (no trailing /).
+        Defaults to `https://api.unkey.dev`.
+    """
 
     __slots__ = (
         "_apis",
@@ -52,11 +62,19 @@ class Client:
         return self._apis
 
     def set_api_key(self, api_key: str) -> None:
-        """Sets the api key used by the http service."""
+        """Sets the api key used by the http service.
+
+        Args:
+            api_key: The new root api key to use for requests.
+        """
         self._http.set_api_key(api_key)
 
     def set_api_base_url(self, base_url: str) -> None:
-        """Sets the api base url used by the http service."""
+        """Sets the api base url used by the http service.
+
+        Args:
+            base_url: The new api base url to use for requests.
+        """
         self._http.set_base_url(base_url)
 
     async def start(self) -> None:
