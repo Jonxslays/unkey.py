@@ -54,3 +54,13 @@ class KeyService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key(data))
+
+    async def verify_key(self, key: str) -> ResultT[models.ApiKeyVerification]:
+        route = routes.VERIFY_KEY.compile()
+        payload = self._generate_map(key=key)
+        data = await self._http.fetch(route, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.to_api_key_verification(data))

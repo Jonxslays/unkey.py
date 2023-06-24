@@ -80,3 +80,4 @@ class Route:
 
 
 CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys")
+VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys/verify")

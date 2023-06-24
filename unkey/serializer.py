@@ -63,6 +63,10 @@ class Serializer:
 
     def to_api_key(self, data: DictT) -> models.ApiKey:
         model = models.ApiKey()
-        model.key = data["key"]
-        model.id = data["keyId"]
+        self._set_attrs_cased(model, data, "key", "key_id")
+        return model
+
+    def to_api_key_verification(self, data: DictT) -> models.ApiKeyVerification:
+        model = models.ApiKeyVerification()
+        self._set_attrs_cased(model, data, "valid", "owner_id", "meta", "error", maybe=True)
         return model

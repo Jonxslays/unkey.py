@@ -58,10 +58,10 @@ class HttpService:
         if isinstance(data, models.HttpErrorResponse):
             return data
 
-        if not response.ok:
+        # Skipping 404's seems hacky but whatever
+        if not response.ok and response.status != 404:
             return models.HttpErrorResponse(
                 response.status,
-                # TODO: Check what property error messages are returned in
                 data.get("message", "An unexpected error occurred while making the request."),
             )
 

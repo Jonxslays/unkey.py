@@ -39,6 +39,7 @@ __all__ = (
     "serializer",
     "services",
     "ApiKey",
+    "ApiKeyVerification",
     "BaseEnum",
     "BaseError",
     "BaseModel",

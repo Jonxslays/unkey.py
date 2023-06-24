@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import typing as t
+
 import attrs
 
 from .base import BaseEnum
 from .base import BaseModel
 
-__all__ = ("ApiKey", "RateLimit", "RateLimitType")
+__all__ = ("ApiKey", "ApiKeyVerification", "RateLimit", "RateLimitType")
 
 
 class RateLimitType(BaseEnum):
@@ -34,8 +36,27 @@ class RateLimit(BaseModel):
 class ApiKey(BaseModel):
     """Minimal representation of an api key."""
 
+    key_id: str
+    """The id of this key stored at unkey."""
+
     key: str
     """The api key itself."""
 
-    id: str
-    """The id of this key stored at unkey."""
+
+@attrs.define(init=False, weakref_slot=False)
+class ApiKeyVerification(BaseModel):
+    """Data about whether this api key is valid."""
+
+    valid: bool
+    """Whether or not this key is valid and passes ratelimit."""
+
+    owner_id: t.Optional[str]
+    """The id of the owner for this key, if the key was found."""
+
+    meta: t.Optional[t.Dict[str, t.Any]]
+    """Dynamic mapping of data used during key creation, if the
+    key was found.
+    """
+
+    error: t.Optional[str]
+    """The error message if the key was invalid."""
