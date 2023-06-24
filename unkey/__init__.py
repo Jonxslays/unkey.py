@@ -55,4 +55,5 @@ __all__ = (
     "Result",
     "Route",
     "Serializer",
+    "UnwrapError",
 )
