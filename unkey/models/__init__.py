@@ -1,3 +1,3 @@
 from .base import *
 
-__all__ = ("BaseModel",)
+__all__ = ("BaseEnum", "BaseModel")

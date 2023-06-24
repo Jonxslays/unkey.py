@@ -27,6 +27,7 @@ __all__ = (
     "models",
     "routes",
     "services",
+    "BaseEnum",
     "BaseModel",
     "BaseService",
     "Client",
