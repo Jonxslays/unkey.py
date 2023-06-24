@@ -11,7 +11,7 @@ from . import BaseService
 __all__ = ("ApiService",)
 
 T = t.TypeVar("T")
-ResultT = result.Result[T, models.HttpErrorResponse]
+ResultT = result.Result[T, models.HttpResponse]
 
 
 class ApiService(BaseService):
@@ -23,7 +23,7 @@ class ApiService(BaseService):
         route = routes.GET_API.compile(api_id)
         data = await self._http.fetch(route)
 
-        if isinstance(data, models.HttpErrorResponse):
+        if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api(data))
@@ -35,7 +35,7 @@ class ApiService(BaseService):
         route = routes.GET_KEYS.compile(api_id).with_params(params)
         data = await self._http.fetch(route)
 
-        if isinstance(data, models.HttpErrorResponse):
+        if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key_list(data))

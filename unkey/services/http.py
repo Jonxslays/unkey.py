@@ -56,7 +56,7 @@ class HttpService:
             return await response.json()
         except Exception:
             if response.status not in self._ok_responses:
-                return models.HttpErrorResponse(response.status, await response.text())
+                return models.HttpResponse(response.status, await response.text())
 
             return await response.text()
 
@@ -65,13 +65,13 @@ class HttpService:
     ) -> t.Any:
         response = await req(url, **kwargs)
         data = await self._try_get_json(response)
-        print(data)
-        if isinstance(data, models.HttpErrorResponse):
+
+        if isinstance(data, models.HttpResponse):
             return data
 
         # Skipping 404's seems hacky but whatever
         if response.status not in (*self._ok_responses, 404):
-            return models.HttpErrorResponse(
+            return models.HttpResponse(
                 response.status,
                 data.get("message", "An unexpected error occurred while making the request."),
             )
@@ -125,7 +125,7 @@ class HttpService:
         route: routes.CompiledRoute,
         *,
         payload: t.Optional[t.Dict[str, t.Any]] = None,
-    ) -> dict[str, t.Any] | models.HttpErrorResponse:
+    ) -> dict[str, t.Any] | models.HttpResponse:
         """Fetches the given route.
 
         Args:

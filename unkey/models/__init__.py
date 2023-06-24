@@ -12,7 +12,7 @@ __all__ = (
     "ApiKeyVerification",
     "BaseEnum",
     "BaseModel",
-    "HttpErrorResponse",
+    "HttpResponse",
     "Ratelimit",
     "RatelimitType",
 )

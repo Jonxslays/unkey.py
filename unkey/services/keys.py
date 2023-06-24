@@ -11,7 +11,7 @@ from . import BaseService
 __all__ = ("KeyService",)
 
 T = t.TypeVar("T")
-ResultT = result.Result[T, models.HttpErrorResponse]
+ResultT = result.Result[T, models.HttpResponse]
 
 
 class KeyService(BaseService):
@@ -50,7 +50,7 @@ class KeyService(BaseService):
 
         data = await self._http.fetch(route, payload=payload)
 
-        if isinstance(data, models.HttpErrorResponse):
+        if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key(data))
@@ -60,16 +60,16 @@ class KeyService(BaseService):
         payload = self._generate_map(key=key)
         data = await self._http.fetch(route, payload=payload)
 
-        if isinstance(data, models.HttpErrorResponse):
+        if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key_verification(data))
 
-    async def revoke_key(self, key_id: str) -> ResultT[None]:
+    async def revoke_key(self, key_id: str) -> ResultT[models.HttpResponse]:
         route = routes.REVOKE_KEY.compile(key_id)
-        data = await self._http.fetch(route)
+        data: str | models.HttpResponse = await self._http.fetch(route)  # type: ignore
 
-        if isinstance(data, models.HttpErrorResponse):
+        if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
-        return result.Ok(None)
+        return result.Ok(models.HttpResponse(202, data))
