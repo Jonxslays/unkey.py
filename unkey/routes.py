@@ -4,6 +4,8 @@ import typing as t
 
 import attrs
 
+from unkey import constants as c
+
 __all__ = ("CompiledRoute", "Route")
 
 
@@ -75,3 +77,6 @@ class Route:
             compiled.uri = compiled.uri.replace(r"{}", str(arg), 1)
 
         return compiled
+
+
+CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys")

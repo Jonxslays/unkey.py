@@ -29,6 +29,8 @@ __all__ = (
     "models",
     "routes",
     "services",
+    "ApiKey",
+    "ApiKeyCreationMeta",
     "BaseEnum",
     "BaseModel",
     "BaseService",
@@ -36,5 +38,7 @@ __all__ = (
     "CompiledRoute",
     "HttpError",
     "HttpService",
+    "RateLimit",
+    "RateLimitType",
     "Route",
 )
