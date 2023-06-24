@@ -21,7 +21,7 @@ class Serializer:
     def _dt_from_iso_maybe(self, timestamp: t.Optional[str]) -> t.Optional[datetime]:
         return self._dt_from_iso(timestamp) if timestamp else None
 
-    def _to_camel_case(self, attr: str) -> str:
+    def to_camel_case(self, attr: str) -> str:
         first, *rest = attr.split("_")
         return "".join((first.lower(), *map(str.title, rest)))
 
@@ -38,7 +38,7 @@ class Serializer:
             raise RuntimeError("Only one of 'maybe' and 'transform' may be used.")
 
         for attr in attrs:
-            cased_attr = self._to_camel_case(attr) if camel_case else attr
+            cased_attr = self.to_camel_case(attr) if camel_case else attr
 
             if transform:
                 setattr(
