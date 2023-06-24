@@ -84,7 +84,7 @@ def formatting(session: nox.Session) -> None:
 @nox.session(reuse_venv=True)
 @install("flake8", "isort")
 def imports(session: nox.Session) -> None:
-    session.run("isort", "unkey", "tests", "-cq")
+    session.run("isort", "unkey", "tests", "-cq", "-s", "__init__.py")
     session.run(
         "flake8",
         "unkey",
