@@ -19,7 +19,7 @@ class HttpService:
     Args:
         api_key: The api key to use.
 
-        api_version: The version of the api to use.
+        api_version: The optional version of the api to use.
 
         api_base_url: The optional api base url to use.
     """
@@ -32,19 +32,22 @@ class HttpService:
         api_version: t.Optional[int],
         api_base_url: t.Optional[str],
     ) -> None:
+        if not api_key:
+            raise ValueError("Api key must be provided.")
+
         self._headers = {
             "x-user-agent": constants.USER_AGENT,
             "Authorization": f"Bearer {api_key}",
         }
 
-        self._api_version = f"/v{api_version}"
+        self._api_version = f"/v{api_version or 1}"
         self._base_url = api_base_url or constants.API_BASE_URL
 
     async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
         try:
             return await response.json()
         except Exception:
-            return models.HttpError(
+            return models.HttpErrorResponse(
                 response.status, "Unable to deserialize response, the api is likely down."
             )
 
@@ -54,11 +57,11 @@ class HttpService:
         response = await req(url, **kwargs)
         data = await self._try_get_json(response)
 
-        if isinstance(data, models.HttpError):
+        if isinstance(data, models.HttpErrorResponse):
             return data
 
         if not response.ok:
-            return models.HttpError(
+            return models.HttpErrorResponse(
                 response.status,
                 # TODO: Check what property error messages are returned in
                 data.get("message", "An unexpected error occurred while making the request."),
@@ -90,11 +93,6 @@ class HttpService:
         """
         self._headers["x-api-key"] = api_key
 
-    def unset_api_key(self) -> None:
-        """Un-sets the current api key so it isn't sent with requests."""
-        if "x-api-key" in self._headers:
-            del self._headers["x-api-key"]
-
     def set_base_url(self, base_url: str) -> None:
         """Sets the api base url used by the http service.
 
@@ -116,10 +114,9 @@ class HttpService:
     async def fetch(
         self,
         route: routes.CompiledRoute,
-        _: t.Type[T],
         *,
         payload: t.Optional[t.Dict[str, t.Any]] = None,
-    ) -> T | models.HttpError:
+    ) -> dict[str, t.Any] | models.HttpErrorResponse:
         """Fetches the given route.
 
         Args:

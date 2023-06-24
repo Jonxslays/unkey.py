@@ -3,8 +3,10 @@ from __future__ import annotations
 import abc
 import typing as t
 
-from unkey import serializer
-from . import HttpService
+if t.TYPE_CHECKING:
+    from unkey import serializer
+
+    from . import HttpService
 
 __all__ = ("BaseService",)
 
