@@ -14,6 +14,7 @@ class Client:
     """An asynchronous client used for interacting with the API."""
 
     __slots__ = (
+        "_apis",
         "_http",
         "_keys",
         "_serializer",
@@ -31,6 +32,7 @@ class Client:
         self.__init_core_services()
 
     def __init_core_services(self) -> None:
+        self._apis = self.__init_service(services.ApiService)
         self._keys = self.__init_service(services.KeyService)
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
@@ -43,6 +45,11 @@ class Client:
     def keys(self) -> services.KeyService:
         """The key service used to make key related requests."""
         return self._keys
+
+    @property
+    def apis(self) -> services.ApiService:
+        """The key service used to make key related requests."""
+        return self._apis
 
     def set_api_key(self, api_key: str) -> None:
         """Sets the api key used by the http service."""

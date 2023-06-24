@@ -65,7 +65,7 @@ class HttpService:
     ) -> t.Any:
         response = await req(url, **kwargs)
         data = await self._try_get_json(response)
-
+        print(data)
         if isinstance(data, models.HttpErrorResponse):
             return data
 

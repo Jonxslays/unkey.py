@@ -28,7 +28,7 @@ class KeyService(BaseService):
         byte_length: int = 16,
         meta: t.Dict[str, t.Any] = {},
         expires: t.Optional[int] = None,
-        ratelimit: t.Optional[models.RateLimit] = None,
+        ratelimit: t.Optional[models.Ratelimit] = None,
     ) -> ResultT[models.ApiKey]:
         route = routes.CREATE_KEY.compile()
         payload = self._generate_map(

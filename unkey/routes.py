@@ -79,6 +79,11 @@ class Route:
         return compiled
 
 
+# Keys
 CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys")
 VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys/verify")
 REVOKE_KEY: t.Final[Route] = Route(c.DELETE, "/keys/{}")
+
+# Apis
+GET_API: t.Final[Route] = Route(c.GET, "/apis/{}")
+GET_KEYS: t.Final[Route] = Route(c.GET, "/apis/{}/keys")

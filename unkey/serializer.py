@@ -70,3 +70,42 @@ class Serializer:
         model = models.ApiKeyVerification()
         self._set_attrs_cased(model, data, "valid", "owner_id", "meta", "error", maybe=True)
         return model
+
+    def to_api(self, data: DictT) -> models.Api:
+        model = models.Api()
+        self._set_attrs_cased(model, data, "id", "name", "workspace_id")
+        return model
+
+    def to_ratelimit(self, data: DictT) -> models.Ratelimit:
+        return models.Ratelimit(
+            limit=data["limit"],
+            refill_rate=data["refillRate"],
+            refill_interval=data["refillInterval"],
+            type=models.RatelimitType.from_str(data["type"]),
+        )
+
+    def to_api_key_meta(self, data: DictT) -> models.ApiKeyMeta:
+        model = models.ApiKeyMeta()
+        ratelimit = data.get("ratelimit")
+        model.ratelimit = self.to_ratelimit(ratelimit) if ratelimit else ratelimit
+        self._set_attrs_cased(
+            model,
+            data,
+            "id",
+            "meta",
+            "start",
+            "api_id",
+            "expires",
+            "owner_id",
+            "created_at",
+            "workspace_id",
+            maybe=True,
+        )
+
+        return model
+
+    def to_api_key_list(self, data: DictT) -> models.ApiKeyList:
+        model = models.ApiKeyList()
+        model.total = data["total"]
+        model.keys = [self.to_api_key_meta(key) for key in data["keys"]]
+        return model

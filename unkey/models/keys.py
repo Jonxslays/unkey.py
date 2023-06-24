@@ -7,19 +7,19 @@ import attrs
 from .base import BaseEnum
 from .base import BaseModel
 
-__all__ = ("ApiKey", "ApiKeyVerification", "RateLimit", "RateLimitType")
+__all__ = ("ApiKey", "ApiKeyMeta", "ApiKeyVerification", "Ratelimit", "RatelimitType")
 
 
-class RateLimitType(BaseEnum):
+class RatelimitType(BaseEnum):
     Fast = "fast"
     Consistent = "consistent"
 
 
 @attrs.define(weakref_slot=False)
-class RateLimit(BaseModel):
+class Ratelimit(BaseModel):
     """Data representing a particular ratelimit."""
 
-    type: RateLimitType
+    type: RatelimitType
     """The type of ratelimiting to implement."""
 
     limit: int
@@ -41,6 +41,40 @@ class ApiKey(BaseModel):
 
     key: str
     """The api key itself."""
+
+
+@attrs.define(init=False, weakref_slot=False)
+class ApiKeyMeta(BaseModel):
+    """Metadata about an api key."""
+
+    id: str
+    """The id of this key."""
+
+    api_id: str
+    """The id of the api this key belongs to."""
+
+    workspace_id: str
+    """The id of the workspace this key belongs to."""
+
+    start: str
+    """The prefix and beginning 3 letters of the key."""
+
+    created_at: int
+    """The unix epoch representing when this key was created."""
+
+    owner_id: t.Optional[str]
+    """The owner of this api key if one was specified."""
+
+    expires: t.Optional[int]
+    """The optional unix epoch representing when this key expires."""
+
+    ratelimit: t.Optional[Ratelimit]
+    """The optional ratelimit associated with this key."""
+
+    meta: t.Optional[t.Dict[str, t.Any]]
+    """The dynamic mapping of data used during key creation, if
+    the key was found.
+    """
 
 
 @attrs.define(init=False, weakref_slot=False)
