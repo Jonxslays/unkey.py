@@ -19,12 +19,14 @@ from . import errors
 from . import models
 from . import result
 from . import routes
+from . import serializer
 from . import services
 from .client import *
 from .errors import *
 from .models import *
 from .result import *
 from .routes import *
+from .serializer import *
 from .services import *
 
 __all__ = (
@@ -34,6 +36,7 @@ __all__ = (
     "models",
     "result",
     "routes",
+    "serializer",
     "services",
     "ApiKey",
     "BaseEnum",
@@ -51,4 +54,5 @@ __all__ = (
     "RateLimitType",
     "Result",
     "Route",
+    "Serializer",
 )
