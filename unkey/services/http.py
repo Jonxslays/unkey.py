@@ -24,7 +24,14 @@ class HttpService:
         api_base_url: The optional api base url to use.
     """
 
-    __slots__ = ("_api_version", "_base_url", "_headers", "_method_mapping", "_session")
+    __slots__ = (
+        "_api_version",
+        "_base_url",
+        "_headers",
+        "_ok_responses",
+        "_method_mapping",
+        "_session",
+    )
 
     def __init__(
         self,
@@ -40,6 +47,7 @@ class HttpService:
             "Authorization": f"Bearer {api_key}",
         }
 
+        self._ok_responses = {200, 202}
         self._api_version = f"/v{api_version or 1}"
         self._base_url = api_base_url or constants.API_BASE_URL
 
@@ -47,7 +55,10 @@ class HttpService:
         try:
             return await response.json()
         except Exception:
-            return models.HttpErrorResponse(response.status, await response.text())
+            if response.status not in self._ok_responses:
+                return models.HttpErrorResponse(response.status, await response.text())
+
+            return await response.text()
 
     async def _request(
         self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any
@@ -59,7 +70,7 @@ class HttpService:
             return data
 
         # Skipping 404's seems hacky but whatever
-        if not response.ok and response.status != 404:
+        if response.status not in (*self._ok_responses, 404):
             return models.HttpErrorResponse(
                 response.status,
                 data.get("message", "An unexpected error occurred while making the request."),

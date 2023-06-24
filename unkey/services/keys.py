@@ -64,3 +64,12 @@ class KeyService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key_verification(data))
+
+    async def revoke_key(self, key_id: str) -> ResultT[None]:
+        route = routes.REVOKE_KEY.compile(key_id)
+        data = await self._http.fetch(route)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(None)
