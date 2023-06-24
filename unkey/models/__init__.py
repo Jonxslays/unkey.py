@@ -1,3 +1,4 @@
 from .base import *
+from .http import *
 
-__all__ = ("BaseEnum", "BaseModel")
+__all__ = ("BaseEnum", "BaseModel", "HttpError")
