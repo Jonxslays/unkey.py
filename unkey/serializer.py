@@ -5,6 +5,8 @@ from datetime import datetime
 
 from unkey import models
 
+__all__ = ("Serializer",)
+
 T = t.TypeVar("T")
 DictT = t.Dict[str, t.Any]
 TransformT = t.Optional[t.Callable[[t.Any], t.Any]]
