@@ -14,6 +14,7 @@ __license__: Final[str] = "GPL-3.0"
 __git_sha__: Final[str] = "[HEAD]"
 
 from . import client
+from . import constants
 from . import models
 from . import routes
 from . import services
@@ -24,6 +25,7 @@ from .services import *
 
 __all__ = (
     "client",
+    "constants",
     "models",
     "routes",
     "services",
@@ -32,5 +34,7 @@ __all__ = (
     "BaseService",
     "Client",
     "CompiledRoute",
+    "HttpError",
+    "HttpService",
     "Route",
 )
