@@ -33,14 +33,14 @@ async def main() -> None:
     client = unkey.Client(api_key=os.environ["API_KEY"])
     await client.start()
 
-    result = await client.keys.create_key(
-        os.environ["API_ID"], "jonxslays", "test"
-    )
+    result = await client.keys.verify_key("prefix_123ABC")
 
     if result.is_ok:
         data = result.unwrap()
-        print(data.id)
-        print(data.key)
+        print(data.valid)
+        print(data.owner_id)
+        print(data.meta)
+        print(data.error)
     else:
         print(result.unwrap_err())
 
