@@ -3,8 +3,8 @@ from __future__ import annotations
 import typing as t
 
 from unkey import models
-from unkey import routes
 from unkey import result
+from unkey import routes
 
 from . import BaseService
 
@@ -35,20 +35,19 @@ class KeyService(BaseService):
 
         if ratelimit:
             ratelimit_data = self._generate_map(
-                type=ratelimit.type,
+                type=str(ratelimit.type),
                 limit=ratelimit.limit,
                 refillRate=ratelimit.refill_rate,
                 refillInterval=ratelimit.refill_interval,
             )
-
         payload = self._generate_map(
             meta=meta,
-            prefix=prefix,
             apiId=api_id,
-            expires=expires,
-            owner_id=owner_id,
+            prefix=prefix,
+            ownerId=owner_id,
             byteLength=byte_length,
             ratelimit=ratelimit_data,
+            expires=self._expires_in(milliseconds=expires or 0),
         )
 
         data = await self._http.fetch(route, payload=payload)

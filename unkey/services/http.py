@@ -47,9 +47,7 @@ class HttpService:
         try:
             return await response.json()
         except Exception:
-            return models.HttpErrorResponse(
-                response.status, "Unable to deserialize response, the api is likely down."
-            )
+            return models.HttpErrorResponse(response.status, await response.text())
 
     async def _request(
         self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any

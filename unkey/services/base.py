@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import abc
 import typing as t
+from datetime import datetime
+from datetime import timedelta
 
 if t.TYPE_CHECKING:
     from unkey import serializer
@@ -29,3 +31,12 @@ class BaseService(abc.ABC):
 
     def _generate_map(self, **kwargs: t.Any) -> t.Dict[str, t.Any]:
         return {k: v for k, v in kwargs.items() if v is not None}
+
+    def _expires_in(
+        self, *, milliseconds: int = 0, seconds: int = 0, minutes: int = 0, days: int = 0
+    ) -> int | None:
+        if not any({milliseconds, seconds, minutes, days}):
+            return None
+
+        delta = timedelta(days=days, minutes=minutes, seconds=seconds, milliseconds=milliseconds)
+        return int((datetime.now() + delta).timestamp()) * 1000
