@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-import typing as t
-
 import attrs
 
 from .base import BaseEnum
 from .base import BaseModel
 
-__all__ = ("ApiKey", "ApiKeyCreationMeta", "RateLimit", "RateLimitType")
+__all__ = ("ApiKey", "RateLimit", "RateLimitType")
 
 
 class RateLimitType(BaseEnum):
@@ -41,33 +39,3 @@ class ApiKey(BaseModel):
 
     id: str
     """The id of this key stored at unkey."""
-
-
-@attrs.define(weakref_slot=False)
-class ApiKeyCreationMeta(BaseModel):
-    """Data representing all metadata about a new key that is being
-    created.
-    """
-
-    api_id: str
-    """The id for the api this key will be used to access."""
-
-    prefix: str
-    """The prefix to use for the key."""
-
-    owner_id: str
-    """The id of the owner who will use this key."""
-
-    byte_length: int = 16
-    """The length to use for the key in bytes (defaults to 16)."""
-
-    meta: t.Dict[str, t.Any] = attrs.field(factory=dict)
-    """Optional dynamic metadata that you feel is useful."""
-
-    expires: t.Optional[int] = None
-    """The optional unix epoch timestamp when this key should expire."""
-
-    ratelimit: t.Optional[RateLimit] = None
-    """The optional ratelimit to place on this key."""
-
-

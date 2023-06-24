@@ -4,10 +4,9 @@ from .keys import *
 
 __all__ = (
     "ApiKey",
-    "ApiKeyCreationMeta",
     "BaseEnum",
     "BaseModel",
-    "HttpError",
+    "HttpErrorResponse",
     "RateLimit",
     "RateLimitType",
 )

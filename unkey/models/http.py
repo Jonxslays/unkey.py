@@ -4,11 +4,11 @@ import attrs
 
 from .base import BaseModel
 
-__all__ = ("HttpError",)
+__all__ = ("HttpErrorResponse",)
 
 
 @attrs.define(weakref_slot=False)
-class HttpError(BaseModel):
+class HttpErrorResponse(BaseModel):
     """Indicates something went wrong during the request."""
 
     status: int
