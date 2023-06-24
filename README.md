@@ -20,6 +20,38 @@ pip install -U git+https://github.com/Jonxslays/unkey.py
 
 For more information on using `pip`, check out the [pip documentation](https://pip.pypa.io/en/stable/).
 
+## Example
+
+```py
+import asyncio
+import os
+
+import unkey
+
+
+async def main() -> None:
+    client = unkey.Client(api_key=os.environ["API_KEY"])
+    await client.start()
+
+    result = await client.keys.create_key(
+        os.environ["API_ID"], "jonxslays", "test"
+    )
+
+    if result.is_ok:
+        data = result.unwrap()
+        print(data.id)
+        print(data.key)
+    else:
+        print(result.unwrap_err())
+
+    await client.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+```
+
 ## What is unkey.dev
 
 unkey.dev is a fully open source API key management solution. It allows you to create,
