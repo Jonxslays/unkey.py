@@ -37,7 +37,7 @@ class ApiService(BaseService):
         return result.Ok(self._serializer.to_api(data))
 
     async def list_keys(
-        self, api_id: str, *, limit: int = 100, offset: int = 0
+        self, api_id: str, *, owner_id: t.Optional[str] = None, limit: int = 100, offset: int = 0
     ) -> ResultT[models.ApiKeyList]:
         """Gets a paginated list of keys for the given api.
 
@@ -45,6 +45,8 @@ class ApiService(BaseService):
             api_id: The id of the api.
 
         Keyword Args:
+            owner_id: The optional owner id to list the keys for.
+
             limit: The max number of keys to include in this page.
                 Defaults to 100.
 
@@ -53,7 +55,8 @@ class ApiService(BaseService):
         Returns:
             A result containing api key list or an error.
         """
-        params = self._generate_map(limit=limit, offset=offset)
+        params = self._generate_map(ownerId=owner_id, limit=limit, offset=offset)
+        print(params)
         route = routes.GET_KEYS.compile(api_id).with_params(params)
         data = await self._http.fetch(route)
 
