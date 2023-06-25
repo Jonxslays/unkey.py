@@ -86,9 +86,9 @@ site_url: https://jonxslays.github.io/unkey.py/
 
 nav:
   - "Home":
-    - "about.md"
-    - "contributing.md"
-    - "license.md"
+      - About: "index.md"
+      - "contributing.md"
+      - "license.md"
   - "Getting started":
       - "getting-started/installation.md"
       - "getting-started/client.md"
