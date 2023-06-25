@@ -37,7 +37,6 @@ await client.close()
 You will receive errors/warnings if you do not properly starting the client
 before using it, or closing it before your program terminates.
 
-
 ## Example client usage
 
 ```py
@@ -60,7 +59,7 @@ async def main() -> None:
     )
 
     result = await client.keys.create_key(
-        api_id,
+        os.environ["API_ID"],
         "jonxslays",  # user id
         "test",  # prefix
         byte_length=32,
