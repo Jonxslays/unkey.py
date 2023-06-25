@@ -22,7 +22,7 @@ for detailed instructions if you aren't familiar with it.
 ## Installing dependencies
 
 1. Create a fork of unkey.py, and clone the fork to your local machine.
-2. Change directory into the project dir `unkey`.
+2. Change directory into the project dir.
 3. Run `poetry shell` to create a new virtual environment, and activate it.
 4. Run `poetry install` to install dependencies (this includes dev deps).
 
