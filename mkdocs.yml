@@ -88,6 +88,7 @@ nav:
   - "Home":
       - About: "index.md"
       - "contributing.md"
+      - "changelog.md"
       - "license.md"
   - "Getting started":
       - "getting-started/installation.md"
