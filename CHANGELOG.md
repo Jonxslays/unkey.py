@@ -5,7 +5,7 @@
 ### Additions
 
 - Add `Client`, `KeyService` and `ApiService`.
-- Add support for currently documented public endpoints.
+- Add support for Get API, List Keys, Create Key, Verify Key, and Revoke Key.
 - Add `Serializer`, and other necessary base services.
 - Add relevant models.
 
