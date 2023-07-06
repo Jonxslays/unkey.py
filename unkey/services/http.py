@@ -14,7 +14,7 @@ T = t.TypeVar("T")
 
 
 class HttpService:
-    """The HTTP service used to make requests to the WOM API.
+    """The HTTP service used to make requests to the unkey API.
 
     Args:
         api_key: The api key to use.
