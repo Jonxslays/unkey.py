@@ -73,7 +73,9 @@ class HttpService:
         if response.status not in (*self._ok_responses, 404):
             return models.HttpResponse(
                 response.status,
-                data.get("message", "An unexpected error occurred while making the request."),
+                data.get("error")
+                or data.get("message")
+                or "An unexpected error occurred while making the request.",
             )
 
         return data
