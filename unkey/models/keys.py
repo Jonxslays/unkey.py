@@ -6,6 +6,7 @@ import attrs
 
 from .base import BaseEnum
 from .base import BaseModel
+from .http import ErrorCode
 
 __all__ = ("ApiKey", "ApiKeyMeta", "ApiKeyVerification", "Ratelimit", "RatelimitType")
 
@@ -78,6 +79,12 @@ class ApiKeyMeta(BaseModel):
     the key was found.
     """
 
+    remaining: t.Optional[int]
+    """The remaining verifications before this key is invalidated.
+    If `None`, this field was not used in the keys creation and can
+    be ignored.
+    """
+
 
 @attrs.define(init=False, weakref_slot=False)
 class ApiKeyVerification(BaseModel):
@@ -93,6 +100,15 @@ class ApiKeyVerification(BaseModel):
     """Dynamic mapping of data used during key creation, if the
     key was found.
     """
+
+    remaining: t.Optional[int]
+    """The remaining verifications before this key is invalidated.
+    If `None`, this field was not used in the keys creation and can
+    be ignored.
+    """
+
+    code: t.Optional[ErrorCode]
+    """The optional error code returned by the unkey api."""
 
     error: t.Optional[str]
     """The error message if the key was invalid."""
