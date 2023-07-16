@@ -4,7 +4,7 @@ __all__ = ("UnwrapError", "BaseError")
 
 
 class BaseError(Exception):
-    """The base error all wom errors inherit from."""
+    """The base error all unkey errors inherit from."""
 
     __slots__ = ()
 
