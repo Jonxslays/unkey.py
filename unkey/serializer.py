@@ -68,7 +68,11 @@ class Serializer:
 
     def to_api_key_verification(self, data: DictT) -> models.ApiKeyVerification:
         model = models.ApiKeyVerification()
-        self._set_attrs_cased(model, data, "valid", "owner_id", "meta", "error", maybe=True)
+        model.code = models.ErrorCode.from_str_maybe(data.get("code", ""))
+        self._set_attrs_cased(
+            model, data, "valid", "owner_id", "meta", "remaining", "error", maybe=True
+        )
+
         return model
 
     def to_api(self, data: DictT) -> models.Api:
@@ -96,6 +100,7 @@ class Serializer:
             "start",
             "api_id",
             "expires",
+            "remaining",
             "owner_id",
             "created_at",
             "workspace_id",
