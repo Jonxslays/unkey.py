@@ -833,7 +833,7 @@
 
 
 <h2 id="unkey.client.Client" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Client</span>
+          <span class="doc doc-object-name doc-class-name">Client</span>
 
 
 </h2>
@@ -843,6 +843,8 @@
 
   
       <p>An asynchronous client used for interacting with the API.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -871,6 +873,8 @@
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -908,10 +912,9 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
     </tbody>
   </table>
 
-
-        <details class="quote">
-          <summary>Source code in <code>unkey/client.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-13">13</a></span>
+            <details class="quote">
+              <summary>Source code in <code>unkey/client.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-13">13</a></span>
 <span class="normal"><a href="#__codelineno-0-14">14</a></span>
 <span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
@@ -1059,7 +1062,7 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1076,7 +1079,7 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 
 
 <h3 id="unkey.client.Client.apis" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">apis</span>
+          <span class="doc doc-object-name doc-attribute-name">apis</span>
 
   
   <span class="doc doc-labels">
@@ -1099,7 +1102,7 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 
 
 <h3 id="unkey.client.Client.keys" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">keys</span>
+          <span class="doc doc-object-name doc-attribute-name">keys</span>
 
   
   <span class="doc doc-labels">
@@ -1119,12 +1122,13 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.client.Client.close" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">close</span>
+          <span class="doc doc-object-name doc-function-name">close</span>
 
   
   <span class="doc doc-labels">
@@ -1139,25 +1143,26 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
   
       <p>Closes the existing client session, if it's still open.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-84">84</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-84">84</a></span>
 <span class="normal"><a href="#__codelineno-0-85">85</a></span>
 <span class="normal"><a href="#__codelineno-0-86">86</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.client.Client.set_api_base_url" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_api_base_url</span>
+          <span class="doc doc-object-name doc-function-name">set_api_base_url</span>
 
 
 </h3>
@@ -1167,6 +1172,8 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api base url used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1196,9 +1203,9 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-72">72</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-72">72</a></span>
 <span class="normal"><a href="#__codelineno-0-73">73</a></span>
 <span class="normal"><a href="#__codelineno-0-74">74</a></span>
 <span class="normal"><a href="#__codelineno-0-75">75</a></span>
@@ -1212,17 +1219,18 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 <a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.client.Client.set_api_key" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_api_key</span>
+          <span class="doc doc-object-name doc-function-name">set_api_key</span>
 
 
 </h3>
@@ -1232,6 +1240,8 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api key used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1261,9 +1271,9 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-64">64</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-64">64</a></span>
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
 <span class="normal"><a href="#__codelineno-0-67">67</a></span>
@@ -1277,17 +1287,18 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 <a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.client.Client.start" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">start</span>
+          <span class="doc doc-object-name doc-function-name">start</span>
 
   
   <span class="doc doc-labels">
@@ -1302,15 +1313,15 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
   
       <p>Starts the client session to be used for http requests.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-80">80</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-80">80</a></span>
 <span class="normal"><a href="#__codelineno-0-81">81</a></span>
 <span class="normal"><a href="#__codelineno-0-82">82</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Starts the client session to be used for http requests.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

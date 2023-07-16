@@ -805,15 +805,15 @@
 
 
 <h2 id="unkey.result.Result" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Result</span>
+          <span class="doc doc-object-name doc-class-name">Result</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="typing">t</span>.<span title="typing.Generic">Generic</span>[<span title="unkey.result.T">T</span>, <span title="unkey.result.E">E</span>]</code>, <code>abc.<span title="abc.ABC">ABC</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="typing">t</span>.<span title="typing.Generic">Generic</span>[<span title="unkey.result.T">T</span>, <span title="unkey.result.E">E</span>]</code>, <code>abc.<span title="abc.ABC">ABC</span></code></p>
 
   
       <p>Represents a potential <code>Ok</code> or <code>Err</code> result.</p>
@@ -822,10 +822,9 @@
   <summary>Note</summary>
   <p>This class can not be instantiated, only its variants can.</p>
 </details>
-
-        <details class="quote">
-          <summary>Source code in <code>unkey/result.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-14">14</a></span>
+            <details class="quote">
+              <summary>Source code in <code>unkey/result.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-14">14</a></span>
 <span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
 <span class="normal"><a href="#__codelineno-0-17">17</a></span>
@@ -913,7 +912,7 @@
 <a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            UnwrapError: If the result was `Ok` and not an `Err`.</span>
 <a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -930,7 +929,7 @@
 
 
 <h3 id="unkey.result.Result.is_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_err</span>
+          <span class="doc doc-object-name doc-attribute-name">is_err</span>
 
   
   <span class="doc doc-labels">
@@ -954,7 +953,7 @@
 
 
 <h3 id="unkey.result.Result.is_ok" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_ok</span>
+          <span class="doc doc-object-name doc-attribute-name">is_ok</span>
 
   
   <span class="doc doc-labels">
@@ -975,12 +974,13 @@
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.result.Result.unwrap" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap</span>
+          <span class="doc doc-object-name doc-function-name">unwrap</span>
 
   
   <span class="doc doc-labels">
@@ -994,6 +994,8 @@
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the value.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1017,6 +1019,8 @@
     </tbody>
   </table>
 
+
+
   <p><strong>Raises:</strong></p>
   <table>
     <thead>
@@ -1039,9 +1043,9 @@
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-37">37</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-37">37</a></span>
 <span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
 <span class="normal"><a href="#__codelineno-0-40">40</a></span>
@@ -1061,17 +1065,18 @@
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        UnwrapError: If the result was an `Err` and not `Ok`.</span>
 <a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="unkey.result.Result.unwrap_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap_err</span>
+          <span class="doc doc-object-name doc-function-name">unwrap_err</span>
 
   
   <span class="doc doc-labels">
@@ -1085,6 +1090,8 @@
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the error.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1108,6 +1115,8 @@
     </tbody>
   </table>
 
+
+
   <p><strong>Raises:</strong></p>
   <table>
     <thead>
@@ -1130,9 +1139,9 @@
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>unkey/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-48">48</a></span>
+          <details class="quote">
+            <summary>Source code in <code>unkey/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-48">48</a></span>
 <span class="normal"><a href="#__codelineno-0-49">49</a></span>
 <span class="normal"><a href="#__codelineno-0-50">50</a></span>
 <span class="normal"><a href="#__codelineno-0-51">51</a></span>
@@ -1152,7 +1161,7 @@
 <a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        UnwrapError: If the result was `Ok` and not an `Err`.</span>
 <a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

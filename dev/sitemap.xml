@@ -2,72 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/changelog/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/contributing/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/license/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/getting-started/client/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/getting-started/installation/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/getting-started/result/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/client/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/errors/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/models/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/result/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/routes/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/serializer/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/unkey.py/dev/reference/services/</loc>
-         <lastmod>2023-07-06</lastmod>
+         <lastmod>2023-07-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
