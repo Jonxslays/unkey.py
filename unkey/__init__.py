@@ -51,6 +51,7 @@ __all__ = (
     "Client",
     "CompiledRoute",
     "Err",
+    "ErrorCode",
     "HttpResponse",
     "HttpService",
     "KeyService",
