@@ -25,9 +25,10 @@ class KeyService(BaseService):
         owner_id: str,
         prefix: str,
         *,
-        byte_length: int = 16,
-        meta: t.Dict[str, t.Any] = {},
+        byte_length: t.Optional[int] = None,
+        meta: t.Optional[t.Dict[str, t.Any]] = None,
         expires: t.Optional[int] = None,
+        remaining: t.Optional[int] = None,
         ratelimit: t.Optional[models.Ratelimit] = None,
     ) -> ResultT[models.ApiKey]:
         """Creates a new api key.
@@ -50,6 +51,10 @@ class KeyService(BaseService):
             expires: The optional number of milliseconds into the future
                 when this key should expire.
 
+            remaining: The optional max number of times this key can be
+                used. Useful for creating long lived keys but with a
+                limit on total uses.
+
             ratelimit: The optional Ratelimit to set on this key.
 
         Returns:
@@ -61,6 +66,7 @@ class KeyService(BaseService):
             apiId=api_id,
             prefix=prefix,
             ownerId=owner_id,
+            remaining=remaining,
             byteLength=byte_length,
             expires=self._expires_in(milliseconds=expires or 0),
             ratelimit=None
@@ -108,9 +114,18 @@ class KeyService(BaseService):
             A result containing the http response or an error.
         """
         route = routes.REVOKE_KEY.compile(key_id)
-        data: str | models.HttpResponse = await self._http.fetch(route)  # type: ignore
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
-        return result.Ok(models.HttpResponse(202, data))
+        if "error" in data:
+            return result.Err(
+                models.HttpResponse(
+                    404,
+                    data["error"],
+                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                )
+            )
+
+        return result.Ok(models.HttpResponse(200, "OK"))

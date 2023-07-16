@@ -34,6 +34,15 @@ class ApiService(BaseService):
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
+        if "error" in data:
+            return result.Err(
+                models.HttpResponse(
+                    404,
+                    data["error"],
+                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                )
+            )
+
         return result.Ok(self._serializer.to_api(data))
 
     async def list_keys(
@@ -56,11 +65,19 @@ class ApiService(BaseService):
             A result containing api key list or an error.
         """
         params = self._generate_map(ownerId=owner_id, limit=limit, offset=offset)
-        print(params)
         route = routes.GET_KEYS.compile(api_id).with_params(params)
         data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
+
+        if "error" in data:
+            return result.Err(
+                models.HttpResponse(
+                    404,
+                    data["error"],
+                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                )
+            )
 
         return result.Ok(self._serializer.to_api_key_list(data))
