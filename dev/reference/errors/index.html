@@ -570,6 +570,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#unkey.errors.MissingRequiredArgument" class="md-nav__link">
+    MissingRequiredArgument
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#unkey.errors.UnwrapError" class="md-nav__link">
     UnwrapError
   </a>
@@ -702,6 +709,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#unkey.errors.MissingRequiredArgument" class="md-nav__link">
+    MissingRequiredArgument
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#unkey.errors.UnwrapError" class="md-nav__link">
     UnwrapError
   </a>
@@ -800,6 +814,62 @@
 
 
 
+<h2 id="unkey.errors.MissingRequiredArgument" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">MissingRequiredArgument</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="unkey.errors.BaseError" href="#unkey.errors.BaseError">BaseError</a></code></p>
+
+  
+      <p>Raised when a required argument is missing.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>unkey/errors.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="k">class</span> <span class="nc">MissingRequiredArgument</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a required argument is missing.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing required argument: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
 <h2 id="unkey.errors.UnwrapError" class="doc doc-heading">
           <span class="doc doc-object-name doc-class-name">UnwrapError</span>
 
@@ -813,7 +883,6 @@
 
   
       <p>Raised when calling unwrap or unwrap_err incorrectly.</p>
-<p>message: The error message.</p>
 
             <details class="quote">
               <summary>Source code in <code>unkey/errors.py</code></summary>
@@ -823,19 +892,13 @@
 <span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
 <span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">UnwrapError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when calling unwrap or unwrap_err incorrectly.</span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">UnwrapError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when calling unwrap or unwrap_err incorrectly.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="sd">    message: The error message.</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unwrap failed: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unwrap failed: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
