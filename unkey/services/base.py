@@ -5,6 +5,8 @@ import typing as t
 from datetime import datetime
 from datetime import timedelta
 
+from unkey import undefined
+
 if t.TYPE_CHECKING:
     from unkey import serializer
 
@@ -30,13 +32,13 @@ class BaseService(abc.ABC):
         self._serializer = serializer
 
     def _generate_map(self, **kwargs: t.Any) -> t.Dict[str, t.Any]:
-        return {k: v for k, v in kwargs.items() if v is not None}
+        return {k: v for k, v in kwargs.items() if v is not undefined.UNDEFINED}
 
     def _expires_in(
         self, *, milliseconds: int = 0, seconds: int = 0, minutes: int = 0, days: int = 0
-    ) -> int | None:
+    ) -> undefined.UndefinedOr[int]:
         if not any({milliseconds, seconds, minutes, days}):
-            return None
+            return undefined.UNDEFINED
 
         delta = timedelta(days=days, minutes=minutes, seconds=seconds, milliseconds=milliseconds)
         return int((datetime.now() + delta).timestamp()) * 1000
