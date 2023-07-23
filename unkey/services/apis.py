@@ -5,6 +5,7 @@ import typing as t
 from unkey import models
 from unkey import result
 from unkey import routes
+from unkey import undefined
 
 from . import BaseService
 
@@ -46,7 +47,12 @@ class ApiService(BaseService):
         return result.Ok(self._serializer.to_api(data))
 
     async def list_keys(
-        self, api_id: str, *, owner_id: t.Optional[str] = None, limit: int = 100, offset: int = 0
+        self,
+        api_id: str,
+        *,
+        owner_id: undefined.UndefinedOr[str] = undefined.UNDEFINED,
+        limit: int = 100,
+        offset: int = 0,
     ) -> ResultT[models.ApiKeyList]:
         """Gets a paginated list of keys for the given api.
 

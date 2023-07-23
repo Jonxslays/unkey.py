@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.4.0 (Jul 2023)
+
+### Additions
+
+- Add `UNDEFINED`, `UndefinedOr`, and `UndefinedNoneOr` types.
+- Add `update_key` method to key service.
+- Add `name` parameter to the `create_key` method.
+
+### Changes
+
+- Refactor existing methods to use the new `UNDEFINED` type.
+
+---
+
 ## v0.3.0 (Jul 2023)
 
 ### Bugfixes

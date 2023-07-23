@@ -228,3 +228,103 @@ def test_to_ratelimit(
     result = serializer.to_ratelimit(raw_ratelimit)
 
     assert result == full_ratelimit
+
+
+#################
+# to_api_key_meta
+#################
+
+
+def _raw_api_key_meta() -> DictT:
+    return {
+        "id": "fxc_DDD",
+        "meta": {"test": 1},
+        "start": "fxc",
+        "apiId": "api_FFF",
+        "expires": 123,
+        "remaining": 12,
+        "ownerId": "jonxslays",
+        "createdAt": 456,
+        "workspaceId": "ws_GGG",
+        "ratelimit": {
+            "type": "fast",
+            "limit": 1,
+            "refillRate": 2,
+            "refillInterval": 3,
+        },
+    }
+
+
+@pytest.fixture()
+def raw_api_key_meta() -> DictT:
+    return _raw_api_key_meta()
+
+
+def _full_api_key_meta() -> models.ApiKeyMeta:
+    model = models.ApiKeyMeta()
+    model.id = "fxc_DDD"
+    model.meta = {"test": 1}
+    model.start = "fxc"
+    model.api_id = "api_FFF"
+    model.expires = 123
+    model.remaining = 12
+    model.owner_id = "jonxslays"
+    model.created_at = 456
+    model.workspace_id = "ws_GGG"
+    model.ratelimit = models.Ratelimit(
+        models.RatelimitType.Fast,
+        limit=1,
+        refill_rate=2,
+        refill_interval=3,
+    )
+
+    return model
+
+
+@pytest.fixture()
+def full_api_key_meta() -> models.ApiKeyMeta:
+    return _full_api_key_meta()
+
+
+def test_to_api_key_meta(
+    raw_api_key_meta: DictT,
+    full_api_key_meta: models.ApiKeyMeta,
+) -> None:
+    result = serializer.to_api_key_meta(raw_api_key_meta)
+
+    assert result == full_api_key_meta
+
+
+#################
+# to_api_key_list
+#################
+
+
+def _raw_api_key_list() -> DictT:
+    return {"total": 1, "keys": [_raw_api_key_meta()]}
+
+
+@pytest.fixture()
+def raw_api_key_list() -> DictT:
+    return _raw_api_key_list()
+
+
+def _full_api_key_list() -> models.ApiKeyList:
+    model = models.ApiKeyList()
+    model.total = 1
+    model.keys = [_full_api_key_meta()]
+    return model
+
+
+@pytest.fixture()
+def full_api_key_list() -> models.ApiKeyList:
+    return _full_api_key_list()
+
+
+def test_to_api_key_list(
+    raw_api_key_list: DictT,
+    full_api_key_list: models.ApiKeyList,
+) -> None:
+    result = serializer.to_api_key_list(raw_api_key_list)
+
+    assert result == full_api_key_list
