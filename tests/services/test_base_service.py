@@ -4,8 +4,8 @@ from unittest import mock
 
 import pytest
 
-from unkey import BaseService
 from unkey import UNDEFINED
+from unkey import BaseService
 
 
 @pytest.fixture()
