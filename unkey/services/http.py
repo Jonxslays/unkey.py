@@ -114,7 +114,7 @@ class HttpService:
 
     async def start(self) -> None:
         """Starts the client session to be used by the http service."""
-        if not hasattr(self, "_session"):
+        if not hasattr(self, "_session") or self._session.closed:
             await self._init_session()
 
     async def close(self) -> None:
