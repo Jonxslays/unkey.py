@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import typing as t
 from datetime import datetime
+from unittest import mock
 
 import pytest
 
@@ -69,6 +70,60 @@ def test_to_camel_case() -> None:
 def test_to_camel_case_with_casing() -> None:
     result = serializer.to_camel_case("test_what_im_doing")  # type: ignore
     assert result == "testWhatImDoing"
+
+
+def test_set_attrs() -> None:
+    model: t.Any = mock.Mock()
+    data = {"one": 1, "two": 2}
+
+    serializer._set_attrs(model, data, "one", "two")  # type: ignore
+
+    assert model.one == 1
+    assert model.two == 2
+
+
+def test_set_attrs_with_camel_case() -> None:
+    model: t.Any = mock.Mock()
+    data = {"one": 1, "twoThree": 2}
+
+    serializer._set_attrs(model, data, "one", "two_three", camel_case=True)  # type: ignore
+
+    assert model.one == 1
+    assert model.two_three == 2
+
+
+def test_set_attrs_maybe_transform_fails() -> None:
+    with pytest.raises(RuntimeError) as e:
+        serializer._set_attrs(mock.Mock(), mock.Mock(), maybe=True, transform=lambda: None)  # type: ignore
+
+    assert e.exconly() == "RuntimeError: Only one of 'maybe' and 'transform' may be used."
+
+
+def test_set_attrs_with_transform() -> None:
+    model: t.Any = mock.Mock()
+    data = {"one": 1, "two": 2}
+
+    serializer._set_attrs(model, data, "one", "two", transform=lambda i: i * 2)  # type: ignore
+
+    assert model.one == 2
+    assert model.two == 4
+
+
+@mock.patch("unkey.serializer.Serializer._set_attrs")
+def test_set_attrs_cased(set_attrs: mock.Mock) -> None:
+    model = object()
+    data = {}
+    attrs = {"one", "two"}
+    transform = lambda: None
+    maybe = False
+
+    serializer._set_attrs_cased(  # type: ignore
+        model, data, *attrs, transform=transform, maybe=maybe  # type: ignore
+    )
+
+    set_attrs.assert_called_once_with(
+        model, data, *attrs, transform=transform, camel_case=True, maybe=maybe
+    )
 
 
 ########
