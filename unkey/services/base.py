@@ -7,7 +7,7 @@ from datetime import timedelta
 
 from unkey import undefined
 
-if t.TYPE_CHECKING:
+if t.TYPE_CHECKING:  # pragma: nocover
     from unkey import serializer
 
     from . import HttpService
