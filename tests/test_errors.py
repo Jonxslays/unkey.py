@@ -13,3 +13,9 @@ def test_unwrap_error() -> None:
     e = errors.UnwrapError("test")
     assert isinstance(e, errors.BaseError)
     assert str(e) == "Unwrap failed: test"
+
+
+def test_missing_required_argument() -> None:
+    e = errors.MissingRequiredArgument("test")
+    assert isinstance(e, errors.BaseError)
+    assert str(e) == "Missing required argument: test"
