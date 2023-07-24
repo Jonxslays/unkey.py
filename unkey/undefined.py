@@ -40,14 +40,14 @@ def __singleton_new(cls: t.Any) -> t.NoReturn:
 UNDEFINED = Undefined()
 """A value that does not exist."""
 
-Undefined.__new__ = __singleton_new
+Undefined.__new__ = __singleton_new  # type: ignore
 
 T = t.TypeVar("T", covariant=True)
 
 UndefinedOr = t.Union[T, Undefined]
 """A value that is undefined or T"""
 
-UndefinedNoneOr = t.Union[UndefinedOr[T], None]
+UndefinedNoneOr = UndefinedOr[t.Optional[T]]
 """A value that is undefined, none, or T"""
 
 
