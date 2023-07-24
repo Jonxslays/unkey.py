@@ -102,3 +102,4 @@ nav:
       - "reference/routes.md"
       - "reference/serializer.md"
       - "reference/services.md"
+      - "reference/undefined.md"
