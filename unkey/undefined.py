@@ -13,12 +13,34 @@ class Undefined:
     def __bool__(self) -> t.Literal[False]:
         return False
 
+    def __copy__(self) -> Undefined:
+        return self
+
+    def __deepcopy__(self, memo: t.MutableMapping[int, t.Any]) -> Undefined:
+        memo[id(self)] = self
+        return self
+
+    def __getstate__(self) -> t.Any:
+        return False
+
+    def __repr__(self) -> str:
+        return "UNDEFINED"
+
+    def __reduce__(self) -> str:
+        return "UNDEFINED"
+
     def __str__(self) -> str:
         return "UNDEFINED"
 
 
+def __singleton_new(cls: t.Any) -> t.NoReturn:
+    raise TypeError("Cannot instantiate singleton class UNDEFINED.")
+
+
 UNDEFINED = Undefined()
 """A value that does not exist."""
+
+Undefined.__new__ = __singleton_new
 
 T = t.TypeVar("T", covariant=True)
 
