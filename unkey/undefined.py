@@ -54,8 +54,11 @@ UndefinedNoneOr = UndefinedOr[t.Optional[T]]
 def all_undefined(*values: t.Any) -> bool:
     """Whether or not all values are undefined.
 
+    Arguments:
+        *values: The values to check.
+
     Returns:
-        bool: `True` if all values were undefined.
+        `True` if all values were undefined.
     """
     return all(v is UNDEFINED for v in values)
 
@@ -63,7 +66,10 @@ def all_undefined(*values: t.Any) -> bool:
 def any_undefined(*values: t.Any) -> bool:
     """Whether or not any values are undefined.
 
+    Arguments:
+        *values: The values to check.
+
     Returns:
-        bool: `True` if any values were undefined.
+        `True` if any values were undefined.
     """
     return any(v is UNDEFINED for v in values)
