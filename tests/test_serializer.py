@@ -94,7 +94,9 @@ def test_set_attrs_with_camel_case() -> None:
 
 def test_set_attrs_maybe_transform_fails() -> None:
     with pytest.raises(RuntimeError) as e:
-        serializer._set_attrs(mock.Mock(), mock.Mock(), maybe=True, transform=lambda: None)  # type: ignore
+        serializer._set_attrs(  # type: ignore
+            mock.Mock(), mock.Mock(), maybe=True, transform=lambda: None  # type: ignore
+        )
 
     assert e.exconly() == "RuntimeError: Only one of 'maybe' and 'transform' may be used."
 
