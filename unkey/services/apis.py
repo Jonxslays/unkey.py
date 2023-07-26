@@ -5,7 +5,8 @@ import typing as t
 from unkey import models
 from unkey import result
 from unkey import routes
-from unkey import undefined
+from unkey.undefined import UNDEFINED
+from unkey.undefined import UndefinedOr
 
 from . import BaseService
 
@@ -50,7 +51,7 @@ class ApiService(BaseService):
         self,
         api_id: str,
         *,
-        owner_id: undefined.UndefinedOr[str] = undefined.UNDEFINED,
+        owner_id: UndefinedOr[str] = UNDEFINED,
         limit: int = 100,
         offset: int = 0,
     ) -> ResultT[models.ApiKeyList]:

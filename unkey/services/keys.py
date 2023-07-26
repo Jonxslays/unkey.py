@@ -6,7 +6,10 @@ from unkey import errors
 from unkey import models
 from unkey import result
 from unkey import routes
-from unkey import undefined
+from unkey.undefined import UNDEFINED
+from unkey.undefined import UndefinedNoneOr
+from unkey.undefined import UndefinedOr
+from unkey.undefined import all_undefined
 
 from . import BaseService
 
@@ -27,12 +30,12 @@ class KeyService(BaseService):
         owner_id: str,
         prefix: str,
         *,
-        name: undefined.UndefinedOr[str] = undefined.UNDEFINED,
-        byte_length: undefined.UndefinedOr[int] = undefined.UNDEFINED,
-        meta: undefined.UndefinedOr[t.Dict[str, t.Any]] = undefined.UNDEFINED,
-        expires: undefined.UndefinedOr[int] = undefined.UNDEFINED,
-        remaining: undefined.UndefinedOr[int] = undefined.UNDEFINED,
-        ratelimit: undefined.UndefinedOr[models.Ratelimit] = undefined.UNDEFINED,
+        name: UndefinedOr[str] = UNDEFINED,
+        byte_length: UndefinedOr[int] = UNDEFINED,
+        meta: UndefinedOr[t.Dict[str, t.Any]] = UNDEFINED,
+        expires: UndefinedOr[int] = UNDEFINED,
+        remaining: UndefinedOr[int] = UNDEFINED,
+        ratelimit: UndefinedOr[models.Ratelimit] = UNDEFINED,
     ) -> ResultT[models.ApiKey]:
         """Creates a new api key.
 
@@ -140,12 +143,12 @@ class KeyService(BaseService):
         self,
         key_id: str,
         *,
-        name: undefined.UndefinedNoneOr[str] = undefined.UNDEFINED,
-        owner_id: undefined.UndefinedNoneOr[str] = undefined.UNDEFINED,
-        meta: undefined.UndefinedNoneOr[t.Dict[str, t.Any]] = undefined.UNDEFINED,
-        expires: undefined.UndefinedNoneOr[int] = undefined.UNDEFINED,
-        remaining: undefined.UndefinedNoneOr[int] = undefined.UNDEFINED,
-        ratelimit: undefined.UndefinedNoneOr[models.Ratelimit] = undefined.UNDEFINED,
+        name: UndefinedNoneOr[str] = UNDEFINED,
+        owner_id: UndefinedNoneOr[str] = UNDEFINED,
+        meta: UndefinedNoneOr[t.Dict[str, t.Any]] = UNDEFINED,
+        expires: UndefinedNoneOr[int] = UNDEFINED,
+        remaining: UndefinedNoneOr[int] = UNDEFINED,
+        ratelimit: UndefinedNoneOr[models.Ratelimit] = UNDEFINED,
     ) -> ResultT[models.HttpResponse]:
         """Updates an existing api key. To delete a key set its value
         to `None`.
@@ -172,7 +175,7 @@ class KeyService(BaseService):
         Returns:
             A result containing the OK response or an error.
         """
-        if undefined.all_undefined(name, owner_id, meta, expires, remaining, ratelimit):
+        if all_undefined(name, owner_id, meta, expires, remaining, ratelimit):
             raise errors.MissingRequiredArgument("At least one value is required to be updated.")
 
         route = routes.UPDATE_KEY.compile(key_id)
