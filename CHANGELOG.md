@@ -8,7 +8,7 @@
 
 ### Bugfixes
 
-- `Client.start()` now correctly initialized a new client session if called
+- `Client.start()` now correctly initializes a new client session if called
   after closing the client previously.
 
 ### Additions
