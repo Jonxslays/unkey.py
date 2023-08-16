@@ -1,11 +1,19 @@
 # Changelog
 
-## Unreleased
+## v0.4.1 (Aug 2023) 
 
 ### Changes
 
 - `UNDEFINED` is now guaranteed to be a singleton, preventing `id(obj)` mismatches.
-- Allow `Client.start()` to be called again if `Client.close()` was called previously.
+
+### Bugfixes
+
+- `Client.start()` now correctly initialized a new client session if called
+  after closing the client previously.
+
+### Additions
+
+- Tests :).
 
 ---
 
