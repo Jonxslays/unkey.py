@@ -81,7 +81,6 @@ class Serializer:
         model = models.RatelimitState()
         self._set_attrs(model, data, "reset", "limit", "remaining")
         return model
-        
 
     def to_api(self, data: DictT) -> models.Api:
         model = models.Api()
