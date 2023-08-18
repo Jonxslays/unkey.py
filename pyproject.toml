@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "unkey.py"
-version = "0.4.1"
+version = "0.4.2"
 description = "An asynchronous Python SDK for unkey.dev."
 authors = ["Jonxslays"]
 license = "GPL-3.0-only"

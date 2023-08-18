@@ -1,6 +1,15 @@
 # Changelog
 
-## v0.4.1 (Aug 2023) 
+## v0.4.2 (Aug 2023)
+
+### Additions
+
+- Add `RatelimitState` model.
+- Add `ratelimit` and `expires` fields to `ApiKeyVerification`.
+
+---
+
+## v0.4.1 (Aug 2023)
 
 ### Changes
 

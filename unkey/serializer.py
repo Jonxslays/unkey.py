@@ -68,12 +68,20 @@ class Serializer:
 
     def to_api_key_verification(self, data: DictT) -> models.ApiKeyVerification:
         model = models.ApiKeyVerification()
+        ratelimit = data.get("ratelimit")
+        model.ratelimit = self.to_ratelimit_state(ratelimit) if ratelimit else ratelimit
         model.code = models.ErrorCode.from_str_maybe(data.get("code", ""))
         self._set_attrs_cased(
-            model, data, "valid", "owner_id", "meta", "remaining", "error", maybe=True
+            model, data, "valid", "owner_id", "meta", "remaining", "error", "expires", maybe=True
         )
 
         return model
+
+    def to_ratelimit_state(self, data: DictT) -> models.RatelimitState:
+        model = models.RatelimitState()
+        self._set_attrs(model, data, "reset", "limit", "remaining")
+        return model
+        
 
     def to_api(self, data: DictT) -> models.Api:
         model = models.Api()
