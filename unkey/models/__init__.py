@@ -15,5 +15,6 @@ __all__ = (
     "ErrorCode",
     "HttpResponse",
     "Ratelimit",
+    "RatelimitState",
     "RatelimitType",
 )

@@ -8,7 +8,14 @@ from .base import BaseEnum
 from .base import BaseModel
 from .http import ErrorCode
 
-__all__ = ("ApiKey", "ApiKeyMeta", "ApiKeyVerification", "Ratelimit", "RatelimitType")
+__all__ = (
+    "ApiKey",
+    "ApiKeyMeta",
+    "ApiKeyVerification",
+    "Ratelimit",
+    "RatelimitState",
+    "RatelimitType",
+)
 
 
 class RatelimitType(BaseEnum):
@@ -107,8 +114,29 @@ class ApiKeyVerification(BaseModel):
     be ignored.
     """
 
+    expires: t.Optional[int]
+    """The unix epoch in milliseconds indicating when this key expires,
+    if it does."""
+
+    ratelimit: t.Optional[RatelimitState]
+    """The state of the ratelimit set on this key, if any."""
+
     code: t.Optional[ErrorCode]
     """The optional error code returned by the unkey api."""
 
     error: t.Optional[str]
     """The error message if the key was invalid."""
+
+
+@attrs.define(init=False, weakref_slot=False)
+class RatelimitState(BaseModel):
+    """The state of the ratelimit for a given key."""
+
+    limit: int
+    """The number of burstable requests allowed."""
+
+    remaining: int
+    """The remaining requests in this burst window."""
+
+    reset: int
+    """The unix timestamp in milliseconds until the next window."""

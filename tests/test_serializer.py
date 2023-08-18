@@ -9,9 +9,6 @@ import pytest
 from unkey import Serializer
 from unkey import models
 
-# from unittest import mock
-
-
 DictT = t.Dict[str, t.Any]
 
 serializer = Serializer()
@@ -199,6 +196,46 @@ def test_to_api_key(
     assert result == full_api_key
 
 
+####################
+# to_ratelimit_state
+####################
+
+
+def _raw_ratelimit_state() -> DictT:
+    return {
+        "limit": 100,
+        "remaining": 90,
+        "reset": 123,
+    }
+
+
+@pytest.fixture()
+def raw_ratelimit_state() -> DictT:
+    return _raw_ratelimit_state()
+
+
+def _full_ratelimit_state() -> models.RatelimitState:
+    model = models.RatelimitState()
+    model.limit = 100
+    model.remaining = 90
+    model.reset = 123
+    return model
+
+
+@pytest.fixture()
+def full_ratelimit_state() -> models.RatelimitState:
+    return _full_ratelimit_state()
+
+
+def test_to_ratelimit_state(
+    raw_ratelimit_state: DictT,
+    full_ratelimit_state: models.RatelimitState,
+) -> None:
+    result = serializer.to_ratelimit_state(raw_ratelimit_state)
+
+    assert result == full_ratelimit_state
+
+
 #########################
 # to_api_key_verification
 #########################
@@ -210,6 +247,8 @@ def _raw_api_key_verification() -> DictT:
         "owner_id": None,
         "meta": None,
         "remaining": None,
+        "ratelimit": _raw_ratelimit_state(),
+        "expires": 12345,
         "error": "some error",
         "code": "NOT_FOUND",
     }
@@ -226,6 +265,8 @@ def _full_api_key_verification() -> models.ApiKeyVerification:
     model.owner_id = None
     model.meta = None
     model.remaining = None
+    model.ratelimit = _full_ratelimit_state()
+    model.expires = 12345
     model.error = "some error"
     model.code = models.ErrorCode.NotFound
     return model
