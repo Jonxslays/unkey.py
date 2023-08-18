@@ -1,5 +1,4 @@
 from __future__ import annotations
-from os import walk
 
 import typing as t
 from datetime import datetime
