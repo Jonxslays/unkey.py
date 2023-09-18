@@ -17,7 +17,9 @@ class ErrorCode(BaseEnum):
     InternalServerError = "INTERNAL_SERVER_ERROR"
     Ratelimited = "RATELIMITED"
     Forbidden = "FORBIDDEN"
-    UsageExceeded = "USAGE_EXCEEDED"
+    KeyUsageExceeded = "KEY_USAGE_EXCEEDED"
+    InvalidKeyType = "INVALID_KEY_TYPE"
+    NotUnique = "NOT_UNIQUE"
     Unknown = "UNKNOWN"
 
 
