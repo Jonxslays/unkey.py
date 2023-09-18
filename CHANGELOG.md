@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.4.3 (Sep 2023)
+
+### Additions
+
+- Add `NotUnique` and `InvalidKeyType` variants to `ErrorCode`.
+
+### Changes
+
+- Rename `UsageExceeded` error code to `KeyUsageExceeded`.
+
 ## v0.4.2 (Aug 2023)
 
 ### Additions
