@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import typing as t
 
 from unkey import errors
@@ -95,17 +96,36 @@ class KeyService(BaseService):
 
         return result.Ok(self._serializer.to_api_key(data))
 
-    async def verify_key(self, key: str) -> ResultT[models.ApiKeyVerification]:
+    async def verify_key(
+        self, key: str, api_id: UndefinedOr[str] = UNDEFINED
+    ) -> ResultT[models.ApiKeyVerification]:
         """Verifies a key is valid and within ratelimit.
+
+        ### Warning
+
+            Using this method without the `api_id` parameter is deprecated as
+            of v0.5.0 and may result in an error in a future release.
 
         Args:
             key: The key to verify.
 
+            api_id: The (optional for now) api id to verify the key against.
+
         Returns:
             A result containing the api key verification or an error.
         """
-        route = routes.VERIFY_KEY.compile()
-        payload = self._generate_map(key=key)
+        if api_id is UNDEFINED:
+            route = routes.VERIFY_KEY_DEPRECATED.compile()
+            print(
+                "DEPRECATION WARNING: Verifying keys without passing `api_id` "
+                "is deprecated, and will no longer work in a future version. "
+                "Please provide the api id when you are verifying keys.",
+                file=sys.stderr,
+            )
+        else:
+            route = routes.VERIFY_KEY.compile()
+
+        payload = self._generate_map(key=key, apiId=api_id)
         data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):

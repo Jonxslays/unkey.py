@@ -1,11 +1,13 @@
 # Changelog
 
-## v0.4.4 (Dec 2023)
+## v0.5.0 (Dec 2023)
 
 ### Additions
 
 - Add `Conflict` variant to `ErrorCode`.
-- Add `get_key` method to `KeyService`
+- Add `get_key` method to `KeyService`.
+- Add optional `api_id` parameter to `verify_key`. **This parameter will be
+  required in the future.**
 
 ### Changes
 
