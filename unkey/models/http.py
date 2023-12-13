@@ -21,6 +21,7 @@ class ErrorCode(BaseEnum):
     InvalidKeyType = "INVALID_KEY_TYPE"
     NotUnique = "NOT_UNIQUE"
     Unknown = "UNKNOWN"
+    Conflict = "CONFLICT"
 
 
 @attrs.define(weakref_slot=False)
