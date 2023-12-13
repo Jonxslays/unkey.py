@@ -72,8 +72,8 @@ class ApiService(BaseService):
         Returns:
             A result containing api key list or an error.
         """
-        params = self._generate_map(ownerId=owner_id, limit=limit, offset=offset)
-        route = routes.GET_KEYS.compile(api_id).with_params(params)
+        params = self._generate_map(apiId=api_id, ownerId=owner_id, limit=limit, offset=offset)
+        route = routes.GET_KEYS.compile().with_params(params)
         data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
