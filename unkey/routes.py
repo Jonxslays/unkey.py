@@ -87,5 +87,5 @@ REVOKE_KEY: t.Final[Route] = Route(c.POST, "/keys.deleteKey")
 UPDATE_KEY: t.Final[Route] = Route(c.POST, "/keys.updateKey")
 
 # Apis
-GET_API: t.Final[Route] = Route(c.GET, "/apis/{}")
+GET_API: t.Final[Route] = Route(c.GET, "/apis.getApi")
 GET_KEYS: t.Final[Route] = Route(c.GET, "/apis/{}/keys")

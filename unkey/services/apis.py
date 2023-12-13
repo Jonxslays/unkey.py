@@ -30,7 +30,8 @@ class ApiService(BaseService):
         Returns:
             A result containing the requested information or an error.
         """
-        route = routes.GET_API.compile(api_id)
+        params = self._generate_map(apiId=api_id)
+        route = routes.GET_API.compile().with_params(params)
         data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
