@@ -78,7 +78,7 @@ class KeyService(BaseService):
             remaining=remaining,
             byteLength=byte_length,
             expires=self._expires_in(milliseconds=expires or 0),
-            ratelimit=None
+            ratelimit=UNDEFINED
             if not ratelimit
             else self._generate_map(
                 limit=ratelimit.limit,

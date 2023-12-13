@@ -5,6 +5,7 @@
 ### Additions
 
 - Add `Conflict` variant to `ErrorCode`.
+- Add `get_key` method to `KeyService`
 
 ### Changes
 
