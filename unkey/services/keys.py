@@ -198,7 +198,7 @@ class KeyService(BaseService):
         if all_undefined(name, owner_id, meta, expires, remaining, ratelimit):
             raise errors.MissingRequiredArgument("At least one value is required to be updated.")
 
-        route = routes.UPDATE_KEY.compile(key_id)
+        route = routes.UPDATE_KEY.compile()
         payload = self._generate_map(
             name=name,
             meta=meta,
@@ -207,7 +207,7 @@ class KeyService(BaseService):
             remaining=remaining,
             ratelimit=ratelimit,
             expires=self._expires_in(milliseconds=expires or 0)
-            if expires is not None
+            if expires is not UNDEFINED
             else expires,
         )
 
