@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.4.4 (Dec 2023)
+
+### Additions
+
+- Add `Conflict` variant to `ErrorCode`.
+
+### Changes
+
+- Refactor internal routes to use new API endpoints.
+
+---
+
 ## v0.4.3 (Sep 2023)
 
 ### Additions
@@ -9,6 +21,8 @@
 ### Changes
 
 - Rename `UsageExceeded` error code to `KeyUsageExceeded`.
+
+---
 
 ## v0.4.2 (Aug 2023)
 
