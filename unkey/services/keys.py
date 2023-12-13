@@ -142,8 +142,9 @@ class KeyService(BaseService):
         Returns:
             A result containing the http response or an error.
         """
-        route = routes.REVOKE_KEY.compile(key_id)
-        data = await self._http.fetch(route)
+        route = routes.REVOKE_KEY.compile()
+        payload = self._generate_map(keyId=key_id)
+        data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)

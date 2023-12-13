@@ -83,7 +83,7 @@ class Route:
 CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys.createKey")
 VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys.verifyKey")
 VERIFY_KEY_DEPRECATED: t.Final[Route] = Route(c.POST, "/keys/verify")
-REVOKE_KEY: t.Final[Route] = Route(c.DELETE, "/keys/{}")
+REVOKE_KEY: t.Final[Route] = Route(c.POST, "/keys.deleteKey")
 UPDATE_KEY: t.Final[Route] = Route(c.POST, "/keys.updateKey")
 
 # Apis
