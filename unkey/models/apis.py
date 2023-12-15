@@ -28,6 +28,9 @@ class Api(BaseModel):
 class ApiKeyList(BaseModel):
     """Data representing keys for an api."""
 
+    cursor: t.Optional[str]
+    """The cursor indicating the last key that was returned."""
+
     keys: t.List[ApiKeyMeta]
     """A list of keys associated with the api."""
 
