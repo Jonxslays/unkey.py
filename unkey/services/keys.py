@@ -135,8 +135,8 @@ class KeyService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 
@@ -200,3 +200,29 @@ class KeyService(BaseService):
             return result.Err(data)
 
         return result.Ok(models.HttpResponse(200, "OK"))
+
+    async def get_key(self, key_id: str) -> ResultT[models.ApiKeyMeta]:
+        """Retrieves details for the given key.
+
+        Args:
+            key_id: The id of the key.
+
+        Returns:
+            A result containing the api key metadata or an error.
+        """
+        params = self._generate_map(keyId=key_id)
+        route = routes.GET_KEY.compile().with_params(params)
+        data = await self._http.fetch(route)
+
+        if isinstance(data, models.HttpResponse):
+            return result.Err(data)
+
+        if "error" in data:
+            return result.Err(
+                models.HttpResponse(
+                    404,
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
+                )
+            )
+        return result.Ok(self._serializer.to_api_key_meta(data))

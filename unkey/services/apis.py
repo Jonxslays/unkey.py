@@ -41,8 +41,8 @@ class ApiService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 
@@ -82,8 +82,8 @@ class ApiService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 
