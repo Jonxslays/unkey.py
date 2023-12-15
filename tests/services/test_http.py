@@ -13,6 +13,8 @@ def test_init() -> None:
     assert http._api_version == "/v1"  # type: ignore
     assert http._base_url == constants.API_BASE_URL  # type: ignore
     assert http._headers == {  # type: ignore
+        "Unkey-SDK": constants.USER_AGENT,
+        "User-Agent": constants.USER_AGENT,
         "x-user-agent": constants.USER_AGENT,
         "Authorization": "Bearer abc123",
     }
@@ -32,6 +34,8 @@ def test_full_init() -> None:
     assert http._api_version == "/v4"  # type: ignore
     assert http._base_url == "1234"  # type: ignore
     assert http._headers == {  # type: ignore
+        "Unkey-SDK": constants.USER_AGENT,
+        "User-Agent": constants.USER_AGENT,
         "x-user-agent": constants.USER_AGENT,
         "Authorization": "Bearer abc123",
     }

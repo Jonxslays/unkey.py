@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.5.0 (Dec 2023)
+
+### Breaking Changes
+
+- `verify_key` now requires an `api_id` parameter.
+- `list_keys` no longer accepts the `offset` parameter.
+
+### Additions
+
+- Add `Conflict` variant to `ErrorCode`.
+- Add `get_key` method to `KeyService`.
+- Add `cursor` parameter to `list_keys`.
+
+## Bugfixes
+
+- Fix invalid default used when ratelimit was not passed in `create_key`.
+
+### Changes
+
+- Refactor internal routes to use new API endpoints.
+
+---
+
 ## v0.4.3 (Sep 2023)
 
 ### Additions
@@ -9,6 +32,8 @@
 ### Changes
 
 - Rename `UsageExceeded` error code to `KeyUsageExceeded`.
+
+---
 
 ## v0.4.2 (Aug 2023)
 

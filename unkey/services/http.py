@@ -43,6 +43,8 @@ class HttpService:
             raise ValueError("Api key must be provided.")
 
         self._headers = {
+            "Unkey-SDK": constants.USER_AGENT,
+            "User-Agent": constants.USER_AGENT,
             "x-user-agent": constants.USER_AGENT,
             "Authorization": f"Bearer {api_key}",
         }

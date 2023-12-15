@@ -118,6 +118,7 @@ class Serializer:
 
     def to_api_key_list(self, data: DictT) -> models.ApiKeyList:
         model = models.ApiKeyList()
+        model.cursor = data.get("cursor")
         model.total = data["total"]
         model.keys = [self.to_api_key_meta(key) for key in data["keys"]]
         return model

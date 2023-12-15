@@ -78,7 +78,7 @@ class KeyService(BaseService):
             remaining=remaining,
             byteLength=byte_length,
             expires=self._expires_in(milliseconds=expires or 0),
-            ratelimit=None
+            ratelimit=UNDEFINED
             if not ratelimit
             else self._generate_map(
                 limit=ratelimit.limit,
@@ -95,17 +95,19 @@ class KeyService(BaseService):
 
         return result.Ok(self._serializer.to_api_key(data))
 
-    async def verify_key(self, key: str) -> ResultT[models.ApiKeyVerification]:
+    async def verify_key(self, key: str, api_id: str) -> ResultT[models.ApiKeyVerification]:
         """Verifies a key is valid and within ratelimit.
 
         Args:
             key: The key to verify.
 
+            api_id: The id of the api to verify the key against.
+
         Returns:
             A result containing the api key verification or an error.
         """
         route = routes.VERIFY_KEY.compile()
-        payload = self._generate_map(key=key)
+        payload = self._generate_map(key=key, apiId=api_id)
         data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):
@@ -122,8 +124,9 @@ class KeyService(BaseService):
         Returns:
             A result containing the http response or an error.
         """
-        route = routes.REVOKE_KEY.compile(key_id)
-        data = await self._http.fetch(route)
+        route = routes.REVOKE_KEY.compile()
+        payload = self._generate_map(keyId=key_id)
+        data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
@@ -132,8 +135,8 @@ class KeyService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 
@@ -178,7 +181,7 @@ class KeyService(BaseService):
         if all_undefined(name, owner_id, meta, expires, remaining, ratelimit):
             raise errors.MissingRequiredArgument("At least one value is required to be updated.")
 
-        route = routes.UPDATE_KEY.compile(key_id)
+        route = routes.UPDATE_KEY.compile()
         payload = self._generate_map(
             name=name,
             meta=meta,
@@ -187,7 +190,7 @@ class KeyService(BaseService):
             remaining=remaining,
             ratelimit=ratelimit,
             expires=self._expires_in(milliseconds=expires or 0)
-            if expires is not None
+            if expires is not UNDEFINED
             else expires,
         )
 
@@ -197,3 +200,30 @@ class KeyService(BaseService):
             return result.Err(data)
 
         return result.Ok(models.HttpResponse(200, "OK"))
+
+    async def get_key(self, key_id: str) -> ResultT[models.ApiKeyMeta]:
+        """Retrieves details for the given key.
+
+        Args:
+            key_id: The id of the key.
+
+        Returns:
+            A result containing the api key metadata or an error.
+        """
+        params = self._generate_map(keyId=key_id)
+        route = routes.GET_KEY.compile().with_params(params)
+        data = await self._http.fetch(route)
+
+        if isinstance(data, models.HttpResponse):
+            return result.Err(data)
+
+        if "error" in data:
+            return result.Err(
+                models.HttpResponse(
+                    404,
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
+                )
+            )
+
+        return result.Ok(self._serializer.to_api_key_meta(data))

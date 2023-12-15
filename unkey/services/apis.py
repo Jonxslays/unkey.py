@@ -30,7 +30,8 @@ class ApiService(BaseService):
         Returns:
             A result containing the requested information or an error.
         """
-        route = routes.GET_API.compile(api_id)
+        params = self._generate_map(apiId=api_id)
+        route = routes.GET_API.compile().with_params(params)
         data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
@@ -40,8 +41,8 @@ class ApiService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 
@@ -52,8 +53,8 @@ class ApiService(BaseService):
         api_id: str,
         *,
         owner_id: UndefinedOr[str] = UNDEFINED,
-        limit: int = 100,
-        offset: int = 0,
+        limit: UndefinedOr[int] = UNDEFINED,
+        cursor: UndefinedOr[str] = UNDEFINED,
     ) -> ResultT[models.ApiKeyList]:
         """Gets a paginated list of keys for the given api.
 
@@ -63,16 +64,15 @@ class ApiService(BaseService):
         Keyword Args:
             owner_id: The optional owner id to list the keys for.
 
-            limit: The max number of keys to include in this page.
-                Defaults to 100.
+            limit: The optional max number of keys to include in this page.
 
-            offset: How many keys to offset by, for pagination.
+            cursor: Optional key used to determine pagination offset.
 
         Returns:
             A result containing api key list or an error.
         """
-        params = self._generate_map(ownerId=owner_id, limit=limit, offset=offset)
-        route = routes.GET_KEYS.compile(api_id).with_params(params)
+        params = self._generate_map(apiId=api_id, ownerId=owner_id, limit=limit, cursor=cursor)
+        route = routes.GET_KEYS.compile().with_params(params)
         data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpResponse):
@@ -82,8 +82,8 @@ class ApiService(BaseService):
             return result.Err(
                 models.HttpResponse(
                     404,
-                    data["error"],
-                    models.ErrorCode.from_str_maybe(data.get("code", "unknown")),
+                    data["error"].get("message", "Unknown error"),
+                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
 

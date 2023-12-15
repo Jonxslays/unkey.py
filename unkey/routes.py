@@ -80,11 +80,12 @@ class Route:
 
 
 # Keys
-CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys")
-VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys/verify")
-REVOKE_KEY: t.Final[Route] = Route(c.DELETE, "/keys/{}")
-UPDATE_KEY: t.Final[Route] = Route(c.PUT, "/keys/{}")
+CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys.createKey")
+VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys.verifyKey")
+REVOKE_KEY: t.Final[Route] = Route(c.POST, "/keys.deleteKey")
+UPDATE_KEY: t.Final[Route] = Route(c.POST, "/keys.updateKey")
+GET_KEY: t.Final[Route] = Route(c.GET, "/keys.getKey")
 
 # Apis
-GET_API: t.Final[Route] = Route(c.GET, "/apis/{}")
-GET_KEYS: t.Final[Route] = Route(c.GET, "/apis/{}/keys")
+GET_API: t.Final[Route] = Route(c.GET, "/apis.getApi")
+GET_KEYS: t.Final[Route] = Route(c.GET, "/apis.listKeys")
