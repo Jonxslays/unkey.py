@@ -399,7 +399,7 @@ def test_to_api_key_meta(
 
 
 def _raw_api_key_list() -> DictT:
-    return {"total": 1, "keys": [_raw_api_key_meta()]}
+    return {"cursor": None, "total": 1, "keys": [_raw_api_key_meta()]}
 
 
 @pytest.fixture()
@@ -409,6 +409,7 @@ def raw_api_key_list() -> DictT:
 
 def _full_api_key_list() -> models.ApiKeyList:
     model = models.ApiKeyList()
+    model.cursor = None
     model.total = 1
     model.keys = [_full_api_key_meta()]
     return model
