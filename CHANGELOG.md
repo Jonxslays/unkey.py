@@ -13,7 +13,7 @@
 - Add `get_key` method to `KeyService`.
 - Add `cursor` parameter to `list_keys`.
 
-## Bugfixes
+### Bugfixes
 
 - Fix invalid default used when ratelimit was not passed in `create_key`.
 
