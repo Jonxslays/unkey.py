@@ -225,4 +225,5 @@ class KeyService(BaseService):
                     models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
                 )
             )
+
         return result.Ok(self._serializer.to_api_key_meta(data))
