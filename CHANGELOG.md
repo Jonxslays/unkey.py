@@ -13,6 +13,10 @@
 - Add `get_key` method to `KeyService`.
 - Add `cursor` parameter to `list_keys`.
 
+## Bugfixes
+
+- Fix invalid default used when ratelimit was not passed in `create_key`.
+
 ### Changes
 
 - Refactor internal routes to use new API endpoints.
