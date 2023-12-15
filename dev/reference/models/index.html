@@ -646,6 +646,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#unkey.models.apis.ApiKeyList.cursor" class="md-nav__link">
+    cursor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#unkey.models.apis.ApiKeyList.keys" class="md-nav__link">
     keys
   </a>
@@ -1158,6 +1165,13 @@
   
     <nav class="md-nav" aria-label="ApiKeyList">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unkey.models.apis.ApiKeyList.cursor" class="md-nav__link">
+    cursor
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#unkey.models.apis.ApiKeyList.keys" class="md-nav__link">
@@ -1793,15 +1807,21 @@
 <span class="normal"><a href="#__codelineno-0-32">32</a></span>
 <span class="normal"><a href="#__codelineno-0-33">33</a></span>
 <span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="k">class</span> <span class="nc">ApiKeyList</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Data representing keys for an api.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="n">keys</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">ApiKeyMeta</span><span class="p">]</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of keys associated with the api.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="n">cursor</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The cursor indicating the last key that was returned.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The total number of keys associated with the api.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">keys</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">ApiKeyMeta</span><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of keys associated with the api.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The total number of keys associated with the api.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -1814,6 +1834,29 @@
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="unkey.models.apis.ApiKeyList.cursor" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">cursor</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">cursor</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>The cursor indicating the last key that was returned.</p>
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-attribute">
 
@@ -3026,8 +3069,7 @@ enum variant.</p>
 
             <details class="quote">
               <summary>Source code in <code>unkey/models/http.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
 <span class="normal"><a href="#__codelineno-0-29">29</a></span>
 <span class="normal"><a href="#__codelineno-0-30">30</a></span>
@@ -3040,21 +3082,22 @@ enum variant.</p>
 <span class="normal"><a href="#__codelineno-0-37">37</a></span>
 <span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">class</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Directly represents a response from the api.</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    Could indicate either success or failure.</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">status</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The HTTP status code.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The error or success message.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="n">code</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">ErrorCode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The optional error code returned by the unkey api.&quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="k">class</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Directly represents a response from the api.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    Could indicate either success or failure.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">status</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The HTTP status code.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The error or success message.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="n">code</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">ErrorCode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The optional error code returned by the unkey api.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
