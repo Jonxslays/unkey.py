@@ -2,12 +2,16 @@
 
 ## v0.5.0 (Dec 2023)
 
+### Breaking Changes
+
+- `verify_key` now requires an `api_id` parameter.
+- `list_keys` no longer accepts the `offset` parameter.
+
 ### Additions
 
 - Add `Conflict` variant to `ErrorCode`.
 - Add `get_key` method to `KeyService`.
-- Add optional `api_id` parameter to `verify_key`. **This parameter will be
-  required in the future.**
+- Add `cursor` parameter to `list_keys`.
 
 ### Changes
 
