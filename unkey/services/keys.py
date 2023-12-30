@@ -235,7 +235,7 @@ class KeyService(BaseService):
 
     async def update_remaining(
         self, key_id: str, value: t.Optional[int], op: models.UpdateOp
-    ) -> ResultT[int]:
+    ) -> ResultT[t.Optional[int]]:
         """Updates a keys remaining limit.
 
         Args:
