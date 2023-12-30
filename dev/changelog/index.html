@@ -402,6 +402,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v060-dec-2023" class="md-nav__link">
+    v0.6.0 (Dec 2023)
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.6.0 (Dec 2023)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additions" class="md-nav__link">
+    Additions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v050-dec-2023" class="md-nav__link">
     v0.5.0 (Dec 2023)
   </a>
@@ -417,7 +437,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions" class="md-nav__link">
+  <a href="#additions_1" class="md-nav__link">
     Additions
   </a>
   
@@ -451,7 +471,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_1" class="md-nav__link">
+  <a href="#additions_2" class="md-nav__link">
     Additions
   </a>
   
@@ -478,7 +498,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_2" class="md-nav__link">
+  <a href="#additions_3" class="md-nav__link">
     Additions
   </a>
   
@@ -512,7 +532,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions_3" class="md-nav__link">
+  <a href="#additions_4" class="md-nav__link">
     Additions
   </a>
   
@@ -532,7 +552,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_4" class="md-nav__link">
+  <a href="#additions_5" class="md-nav__link">
     Additions
   </a>
   
@@ -566,7 +586,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions_5" class="md-nav__link">
+  <a href="#additions_6" class="md-nav__link">
     Additions
   </a>
   
@@ -593,7 +613,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_6" class="md-nav__link">
+  <a href="#additions_7" class="md-nav__link">
     Additions
   </a>
   
@@ -891,6 +911,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v060-dec-2023" class="md-nav__link">
+    v0.6.0 (Dec 2023)
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.6.0 (Dec 2023)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additions" class="md-nav__link">
+    Additions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v050-dec-2023" class="md-nav__link">
     v0.5.0 (Dec 2023)
   </a>
@@ -906,7 +946,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions" class="md-nav__link">
+  <a href="#additions_1" class="md-nav__link">
     Additions
   </a>
   
@@ -940,7 +980,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_1" class="md-nav__link">
+  <a href="#additions_2" class="md-nav__link">
     Additions
   </a>
   
@@ -967,7 +1007,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_2" class="md-nav__link">
+  <a href="#additions_3" class="md-nav__link">
     Additions
   </a>
   
@@ -1001,7 +1041,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions_3" class="md-nav__link">
+  <a href="#additions_4" class="md-nav__link">
     Additions
   </a>
   
@@ -1021,7 +1061,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_4" class="md-nav__link">
+  <a href="#additions_5" class="md-nav__link">
     Additions
   </a>
   
@@ -1055,7 +1095,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additions_5" class="md-nav__link">
+  <a href="#additions_6" class="md-nav__link">
     Additions
   </a>
   
@@ -1082,7 +1122,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#additions_6" class="md-nav__link">
+  <a href="#additions_7" class="md-nav__link">
     Additions
   </a>
   
@@ -1120,13 +1160,24 @@
 
 <!-- BEGIN INCLUDE ../CHANGELOG.md -->
 <h1 id="changelog">Changelog</h1>
+<h2 id="v060-dec-2023">v0.6.0 (Dec 2023)</h2>
+<h3 id="additions">Additions</h3>
+<ul>
+<li>Add <code>Refill</code>, <code>RefillInterval</code>, and <code>UpdateOp</code> models/enums.</li>
+<li>Add <code>id</code> property onto <code>ApiKeyVerification</code>.</li>
+<li>Add <code>refill</code> property onto <code>ApiKeyMeta</code> and <code>ApiKeyVerification</code>.</li>
+<li>Add serialization methods for new properties and models.</li>
+<li>Add support for <code>refill</code> when creating and updating a key.</li>
+<li>Add <code>update_remaining</code> method to <code>KeyService</code> and corresponding <code>Route</code>.</li>
+</ul>
+<hr />
 <h2 id="v050-dec-2023">v0.5.0 (Dec 2023)</h2>
 <h3 id="breaking-changes">Breaking Changes</h3>
 <ul>
 <li><code>verify_key</code> now requires an <code>api_id</code> parameter.</li>
 <li><code>list_keys</code> no longer accepts the <code>offset</code> parameter.</li>
 </ul>
-<h3 id="additions">Additions</h3>
+<h3 id="additions_1">Additions</h3>
 <ul>
 <li>Add <code>Conflict</code> variant to <code>ErrorCode</code>.</li>
 <li>Add <code>get_key</code> method to <code>KeyService</code>.</li>
@@ -1142,7 +1193,7 @@
 </ul>
 <hr />
 <h2 id="v043-sep-2023">v0.4.3 (Sep 2023)</h2>
-<h3 id="additions_1">Additions</h3>
+<h3 id="additions_2">Additions</h3>
 <ul>
 <li>Add <code>NotUnique</code> and <code>InvalidKeyType</code> variants to <code>ErrorCode</code>.</li>
 </ul>
@@ -1152,7 +1203,7 @@
 </ul>
 <hr />
 <h2 id="v042-aug-2023">v0.4.2 (Aug 2023)</h2>
-<h3 id="additions_2">Additions</h3>
+<h3 id="additions_3">Additions</h3>
 <ul>
 <li>Add <code>RatelimitState</code> model.</li>
 <li>Add <code>ratelimit</code> and <code>expires</code> fields to <code>ApiKeyVerification</code>.</li>
@@ -1168,13 +1219,13 @@
 <li><code>Client.start()</code> now correctly initializes a new client session if called
   after closing the client previously.</li>
 </ul>
-<h3 id="additions_3">Additions</h3>
+<h3 id="additions_4">Additions</h3>
 <ul>
 <li>Tests :).</li>
 </ul>
 <hr />
 <h2 id="v040-jul-2023">v0.4.0 (Jul 2023)</h2>
-<h3 id="additions_4">Additions</h3>
+<h3 id="additions_5">Additions</h3>
 <ul>
 <li>Add <code>UNDEFINED</code>, <code>UndefinedOr</code>, and <code>UndefinedNoneOr</code> types.</li>
 <li>Add <code>update_key</code> method to key service.</li>
@@ -1190,7 +1241,7 @@
 <ul>
 <li>Remove debug print statement in <code>list_keys</code>.</li>
 </ul>
-<h3 id="additions_5">Additions</h3>
+<h3 id="additions_6">Additions</h3>
 <ul>
 <li>Add <code>ErrorCode</code> enum.</li>
 <li>Add <code>remaining</code> parameter to <code>create_key</code>.</li>
@@ -1204,7 +1255,7 @@
 </ul>
 <hr />
 <h2 id="v020-jun-2023">v0.2.0 (Jun 2023)</h2>
-<h3 id="additions_6">Additions</h3>
+<h3 id="additions_7">Additions</h3>
 <ul>
 <li>Add <code>Client</code>, <code>KeyService</code> and <code>ApiService</code>.</li>
 <li>Add <code>Serializer</code>, and other necessary base services.</li>
