@@ -71,14 +71,15 @@ class HttpService:
         if isinstance(data, models.HttpResponse):
             return data
 
-        # Skipping 404's seems hacky but whatever
-        if response.status not in (*self._ok_responses, 404):
-            return models.HttpResponse(
-                response.status,
-                data.get("error")
-                or data.get("message")
-                or "An unexpected error occurred while making the request.",
-            )
+        if response.status not in self._ok_responses:
+            error: t.Union[t.Any, t.Dict[str, t.Any]] = data.get("error")
+            is_dict = isinstance(error, dict)
+
+            message = error.get("message") if is_dict else error
+            code = models.ErrorCode.from_str_maybe(error.get("code") if is_dict else "UNKNOWN")
+            message = message or "An unexpected error occurred while making the request."
+
+            return models.HttpResponse(response.status, str(message), code=code)
 
         return data
 

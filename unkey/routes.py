@@ -84,6 +84,7 @@ CREATE_KEY: t.Final[Route] = Route(c.POST, "/keys.createKey")
 VERIFY_KEY: t.Final[Route] = Route(c.POST, "/keys.verifyKey")
 REVOKE_KEY: t.Final[Route] = Route(c.POST, "/keys.deleteKey")
 UPDATE_KEY: t.Final[Route] = Route(c.POST, "/keys.updateKey")
+UPDATE_REMAINING: t.Final[Route] = Route(c.POST, "/keys.updateRemaining")
 GET_KEY: t.Final[Route] = Route(c.GET, "/keys.getKey")
 
 # Apis

@@ -243,6 +243,7 @@ def test_to_ratelimit_state(
 
 def _raw_api_key_verification() -> DictT:
     return {
+        "keyId": "key_uuuuuu",
         "valid": False,
         "owner_id": None,
         "meta": None,
@@ -251,6 +252,11 @@ def _raw_api_key_verification() -> DictT:
         "expires": 12345,
         "error": "some error",
         "code": "NOT_FOUND",
+        "refill": {
+            "amount": 100,
+            "interval": "daily",
+            "lastRefilledAt": 12345,
+        },
     }
 
 
@@ -261,6 +267,7 @@ def raw_api_key_verification() -> DictT:
 
 def _full_api_key_verification() -> models.ApiKeyVerification:
     model = models.ApiKeyVerification()
+    model.id = "key_uuuuuu"
     model.valid = False
     model.owner_id = None
     model.meta = None
@@ -269,6 +276,7 @@ def _full_api_key_verification() -> models.ApiKeyVerification:
     model.expires = 12345
     model.error = "some error"
     model.code = models.ErrorCode.NotFound
+    model.refill = models.Refill(100, models.RefillInterval.Daily, 12345)
     return model
 
 
@@ -350,6 +358,11 @@ def _raw_api_key_meta() -> DictT:
             "refillRate": 2,
             "refillInterval": 3,
         },
+        "refill": {
+            "amount": 100,
+            "interval": "daily",
+            "lastRefilledAt": 12345,
+        },
     }
 
 
@@ -369,6 +382,7 @@ def _full_api_key_meta() -> models.ApiKeyMeta:
     model.owner_id = "jonxslays"
     model.created_at = 456
     model.workspace_id = "ws_GGG"
+    model.refill = models.Refill(100, models.RefillInterval.Daily, 12345)
     model.ratelimit = models.Ratelimit(
         models.RatelimitType.Fast,
         limit=1,
