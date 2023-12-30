@@ -68,8 +68,14 @@ class Serializer:
 
     def to_api_key_verification(self, data: DictT) -> models.ApiKeyVerification:
         model = models.ApiKeyVerification()
+        model.id = data.get("keyId")
+
         ratelimit = data.get("ratelimit")
         model.ratelimit = self.to_ratelimit_state(ratelimit) if ratelimit else ratelimit
+
+        refill = data.get("refill")
+        model.refill = self.to_refill(refill) if refill else refill
+
         model.code = models.ErrorCode.from_str_maybe(data.get("code", ""))
         self._set_attrs_cased(
             model, data, "valid", "owner_id", "meta", "remaining", "error", "expires", maybe=True
@@ -97,8 +103,13 @@ class Serializer:
 
     def to_api_key_meta(self, data: DictT) -> models.ApiKeyMeta:
         model = models.ApiKeyMeta()
+
         ratelimit = data.get("ratelimit")
         model.ratelimit = self.to_ratelimit(ratelimit) if ratelimit else ratelimit
+
+        refill = data.get("refill")
+        model.refill = self.to_refill(refill) if refill else refill
+
         self._set_attrs_cased(
             model,
             data,
@@ -121,4 +132,13 @@ class Serializer:
         model.cursor = data.get("cursor")
         model.total = data["total"]
         model.keys = [self.to_api_key_meta(key) for key in data["keys"]]
+        return model
+
+    def to_refill(self, data: DictT) -> models.Refill:
+        interval = models.RefillInterval.from_str(data["interval"])
+        amount = data["amount"]
+
+        model = models.Refill(amount, interval)
+        model.last_refilled_at = data.get("lastRefilledAt")
+
         return model

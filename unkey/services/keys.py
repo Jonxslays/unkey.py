@@ -36,6 +36,7 @@ class KeyService(BaseService):
         expires: UndefinedOr[int] = UNDEFINED,
         remaining: UndefinedOr[int] = UNDEFINED,
         ratelimit: UndefinedOr[models.Ratelimit] = UNDEFINED,
+        refill: UndefinedOr[models.Refill] = UNDEFINED,
     ) -> ResultT[models.ApiKey]:
         """Creates a new api key.
 
@@ -63,10 +64,12 @@ class KeyService(BaseService):
                 used. Useful for creating long lived keys but with a
                 limit on total uses.
 
-            ratelimit: The optional Ratelimit to set on this key.
+            ratelimit: The optional `Ratelimit` to set on this key.
+
+            refill: The optional `Refill` to set on this key.
 
         Returns:
-            A result containing the requested information or an error.
+            A result containing the newly created key or an error.
         """
         route = routes.CREATE_KEY.compile()
         payload = self._generate_map(
@@ -85,6 +88,12 @@ class KeyService(BaseService):
                 type=ratelimit.type.value,
                 refillRate=ratelimit.refill_rate,
                 refillInterval=ratelimit.refill_interval,
+            ),
+            refill=UNDEFINED
+            if not refill
+            else self._generate_map(
+                amount=refill.amount,
+                interval=refill.interval.value,
             ),
         )
 
@@ -131,15 +140,6 @@ class KeyService(BaseService):
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
-        if "error" in data:
-            return result.Err(
-                models.HttpResponse(
-                    404,
-                    data["error"].get("message", "Unknown error"),
-                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
-                )
-            )
-
         return result.Ok(models.HttpResponse(200, "OK"))
 
     async def update_key(
@@ -152,6 +152,7 @@ class KeyService(BaseService):
         expires: UndefinedNoneOr[int] = UNDEFINED,
         remaining: UndefinedNoneOr[int] = UNDEFINED,
         ratelimit: UndefinedNoneOr[models.Ratelimit] = UNDEFINED,
+        refill: UndefinedOr[models.Refill] = UNDEFINED,
     ) -> ResultT[models.HttpResponse]:
         """Updates an existing api key. To delete a key set its value
         to `None`.
@@ -173,12 +174,14 @@ class KeyService(BaseService):
             remaining: The new max number of times this key can be
                 used.
 
-            ratelimit: The new Ratelimit to set on this key.
+            ratelimit: The new `Ratelimit` to set on this key.
+
+            refill: The optional `Refill` to set on this key.
 
         Returns:
             A result containing the OK response or an error.
         """
-        if all_undefined(name, owner_id, meta, expires, remaining, ratelimit):
+        if all_undefined(name, owner_id, meta, expires, remaining, ratelimit, refill):
             raise errors.MissingRequiredArgument("At least one value is required to be updated.")
 
         route = routes.UPDATE_KEY.compile()
@@ -188,10 +191,21 @@ class KeyService(BaseService):
             keyId=key_id,
             ownerId=owner_id,
             remaining=remaining,
-            ratelimit=ratelimit,
-            expires=self._expires_in(milliseconds=expires or 0)
-            if expires is not UNDEFINED
-            else expires,
+            expires=self._expires_in(milliseconds=expires or 0),
+            ratelimit=UNDEFINED
+            if not ratelimit
+            else self._generate_map(
+                limit=ratelimit.limit,
+                type=ratelimit.type.value,
+                refillRate=ratelimit.refill_rate,
+                refillInterval=ratelimit.refill_interval,
+            ),
+            refill=UNDEFINED
+            if not refill
+            else self._generate_map(
+                amount=refill.amount,
+                interval=refill.interval.value,
+            ),
         )
 
         data = await self._http.fetch(route, payload=payload)
@@ -216,14 +230,5 @@ class KeyService(BaseService):
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
-
-        if "error" in data:
-            return result.Err(
-                models.HttpResponse(
-                    404,
-                    data["error"].get("message", "Unknown error"),
-                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
-                )
-            )
 
         return result.Ok(self._serializer.to_api_key_meta(data))

@@ -37,15 +37,6 @@ class ApiService(BaseService):
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
 
-        if "error" in data:
-            return result.Err(
-                models.HttpResponse(
-                    404,
-                    data["error"].get("message", "Unknown error"),
-                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
-                )
-            )
-
         return result.Ok(self._serializer.to_api(data))
 
     async def list_keys(
@@ -77,14 +68,5 @@ class ApiService(BaseService):
 
         if isinstance(data, models.HttpResponse):
             return result.Err(data)
-
-        if "error" in data:
-            return result.Err(
-                models.HttpResponse(
-                    404,
-                    data["error"].get("message", "Unknown error"),
-                    models.ErrorCode.from_str_maybe(data["error"].get("code", "UNKNOWN")),
-                )
-            )
 
         return result.Ok(self._serializer.to_api_key_list(data))

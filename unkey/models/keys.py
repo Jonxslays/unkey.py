@@ -15,12 +15,26 @@ __all__ = (
     "Ratelimit",
     "RatelimitState",
     "RatelimitType",
+    "Refill",
+    "RefillInterval",
+    "UpdateOp",
 )
 
 
 class RatelimitType(BaseEnum):
     Fast = "fast"
     Consistent = "consistent"
+
+
+class RefillInterval(BaseEnum):
+    Daily = "daily"
+    Monthly = "monthly"
+
+
+class UpdateOp(BaseEnum):
+    Increment = "increment"
+    Decrement = "decrement"
+    Set = "set"
 
 
 @attrs.define(weakref_slot=False)
@@ -92,10 +106,16 @@ class ApiKeyMeta(BaseModel):
     be ignored.
     """
 
+    refill: t.Optional[Refill]
+    """The keys refill state, if any."""
+
 
 @attrs.define(init=False, weakref_slot=False)
 class ApiKeyVerification(BaseModel):
-    """Data about whether this api key is valid."""
+    """Data about whether this api key and its validity."""
+
+    id: t.Optional[str]
+    """The id of this key."""
 
     valid: bool
     """Whether or not this key is valid and passes ratelimit."""
@@ -121,6 +141,9 @@ class ApiKeyVerification(BaseModel):
     ratelimit: t.Optional[RatelimitState]
     """The state of the ratelimit set on this key, if any."""
 
+    refill: t.Optional[Refill]
+    """The keys refill state, if any."""
+
     code: t.Optional[ErrorCode]
     """The optional error code returned by the unkey api."""
 
@@ -140,3 +163,19 @@ class RatelimitState(BaseModel):
 
     reset: int
     """The unix timestamp in milliseconds until the next window."""
+
+
+@attrs.define(weakref_slot=False)
+class Refill(BaseModel):
+    """Data regarding how a key's verifications should be refilled."""
+
+    amount: int
+    """The number of verifications to refill."""
+
+    interval: RefillInterval
+    """The interval at which to refill the verifications."""
+
+    last_refilled_at: t.Optional[int] = None
+    """The UNIX timestamp in milliseconds indicating when the key was
+    las refilled, if it has been.
+    """

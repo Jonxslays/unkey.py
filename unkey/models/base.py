@@ -52,7 +52,7 @@ class BaseEnum(Enum):
             ) from None
 
     @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
+    def from_str_maybe(cls: t.Type[T], value: t.Optional[str]) -> t.Optional[T]:
         """Attempt to generate this enum from the given value.
 
         Args:
