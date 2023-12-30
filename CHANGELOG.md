@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.6.0 (Dec 2023)
+
+### Additions
+
+- Add `Refill`, `RefillInterval`, and `UpdateOp` models/enums.
+- Add `id` property onto `ApiKeyVerification`.
+- Add `refill` property onto `ApiKeyMeta` and `ApiKeyVerification`.
+- Add serialization methods for new properties and models.
+- Add support for `refill` when creating and updating a key.
+- Add `update_remaining` method to `KeyService` and corresponding `Route`.
+
+---
+
 ## v0.5.0 (Dec 2023)
 
 ### Breaking Changes
