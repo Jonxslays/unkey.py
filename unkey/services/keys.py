@@ -232,3 +232,27 @@ class KeyService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.to_api_key_meta(data))
+
+    async def update_remaining(
+        self, key_id: str, value: t.Optional[int], op: models.UpdateOp
+    ) -> ResultT[int]:
+        """Updates a keys remaining limit.
+
+        Args:
+            key_id: The id of the key.
+
+            value: The value to perform the operation on.
+
+            op: The update operation to perform.
+
+        Returns:
+            A result containing the new remaining limit of the key or an error.
+        """
+        payload = self._generate_map(keyId=key_id, value=value, op=op.value)
+        route = routes.UPDATE_REMAINING.compile()
+        data = await self._http.fetch(route, payload=payload)
+
+        if isinstance(data, models.HttpResponse):
+            return result.Err(data)
+
+        return result.Ok(data["remaining"])
