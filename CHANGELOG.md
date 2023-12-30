@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+
+- Return type of `update_remaining` is now correctly `Optional`.
+
+---
+
 ## v0.6.0 (Dec 2023)
 
 ### Additions
