@@ -1,10 +1,11 @@
 # Changelog
 
-## Unreleased
+## v0.6.1 (Dec 2023)
 
 ### Changes
 
-- Return type of `update_remaining` is now correctly `Optional`.
+- Inner return type of `KeyService.update_remaining` is now correctly
+  `Optional`.
 
 ---
 
