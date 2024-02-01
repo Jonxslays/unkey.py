@@ -95,8 +95,8 @@ def protected(
     def _on_exc(exc: Exception) -> Any:
         if on_exc:
             return on_exc(exc)
-        else:
-            raise exc
+
+        raise exc
 
     def wrapper(
         func: CallableT[T],
