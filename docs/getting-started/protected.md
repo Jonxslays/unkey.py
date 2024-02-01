@@ -194,7 +194,9 @@ def on_exc(exc: Exception) -> JsonResponse:
     return JsonResponse({"error": "An unexpected error occurred"})
 
 
-@unkey.protected(os.environ["UNKEY_API_ID"] key_extractor, on_invalid_key, on_exc)
+@unkey.protected(
+    os.environ["UNKEY_API_ID"], key_extractor, on_invalid_key, on_exc
+)
 def protected_route(
     request: HttpRequest, *, unkey_verification: unkey.ApiKeyVerification
 ) -> JsonResponse:
