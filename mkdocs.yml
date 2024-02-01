@@ -52,8 +52,8 @@ theme:
     text: Noto Sans
     code: Noto Sans Mono
 
-  # logo: unkey-logo.svg
-  # favicon: unkey-logo.png
+  logo: unkey.png
+  favicon: unkey.png
 
   features:
     - navigation.instant
