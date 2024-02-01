@@ -14,6 +14,7 @@ __license__: Final[str] = "GPL-3.0"
 __git_sha__: Final[str] = "[HEAD]"
 
 from . import client
+from . import decorators
 from . import constants
 from . import errors
 from . import models
@@ -23,6 +24,7 @@ from . import serializer
 from . import services
 from . import undefined
 from .client import *
+from .decorators import *
 from .errors import *
 from .models import *
 from .result import *
@@ -34,8 +36,10 @@ from .undefined import *
 __all__ = (
     "client",
     "constants",
+    "decorators",
     "errors",
     "models",
+    "protected",
     "result",
     "routes",
     "serializer",
