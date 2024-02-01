@@ -35,19 +35,21 @@ class HttpService:
 
     def __init__(
         self,
-        api_key: str,
+        api_key: t.Optional[str],
         api_version: t.Optional[int],
         api_base_url: t.Optional[str],
     ) -> None:
-        if not api_key:
-            raise ValueError("Api key must be provided.")
+        if api_key == "":
+            raise ValueError("Api key must not be empty.")
 
         self._headers = {
             "Unkey-SDK": constants.USER_AGENT,
             "User-Agent": constants.USER_AGENT,
             "x-user-agent": constants.USER_AGENT,
-            "Authorization": f"Bearer {api_key}",
         }
+
+        if api_key:
+            self._headers["Authorization"] = f"Bearer {api_key}"
 
         self._ok_responses = {200, 202}
         self._api_version = f"/v{api_version or 1}"

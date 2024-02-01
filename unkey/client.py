@@ -32,7 +32,7 @@ class Client:
 
     def __init__(
         self,
-        api_key: str,
+        api_key: t.Optional[str] = None,
         *,
         api_version: t.Optional[int] = None,
         api_base_url: t.Optional[str] = None,
