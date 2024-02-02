@@ -96,3 +96,9 @@ def imports(session: nox.Session) -> None:
         "--extend-exclude",
         "__init__.py",
     )
+
+
+@nox.session(reuse_venv=True)
+def alls(session: nox.Session) -> None:
+    session.install(".")
+    session.run("python", "scripts/alls.py")
