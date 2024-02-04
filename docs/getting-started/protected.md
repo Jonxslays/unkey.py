@@ -1,11 +1,11 @@
 # The `protected` decorator
 
-The [`protected`](/unkey.py/reference/decorators/#unkey.decorators.protected)
+The [`protected`](/unkey.py/stable/reference/decorators/#unkey.decorators.protected)
 decorator is web framework agnostic and can be used to apply automatic api key
 verification to your endpoints.
 
 Check out how easily you can protect your endpoints using
-[`protected`](/unkey.py/reference/decorators/#unkey.decorators.protected)!
+[`protected`](/unkey.py/stable/reference/decorators/#unkey.decorators.protected)!
 
 ---
 
