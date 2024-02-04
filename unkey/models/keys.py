@@ -150,6 +150,22 @@ class ApiKeyVerification(BaseModel):
     error: t.Optional[str]
     """The error message if the key was invalid."""
 
+    @staticmethod
+    def __internal_serialize(_: type, __: t.Any, value: t.Any) -> t.Any:
+        if isinstance(value, ErrorCode):
+            # Automatically convert ErrorCodes to strings for to_dict()
+            return str(value)
+
+        return value
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        """Converts this class into a dictionary.
+
+        Returns:
+            The requested dictionary.
+        """
+        return attrs.asdict(self, value_serializer=self.__internal_serialize)
+
 
 @attrs.define(init=False, weakref_slot=False)
 class RatelimitState(BaseModel):
