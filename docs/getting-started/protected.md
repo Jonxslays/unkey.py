@@ -178,7 +178,8 @@ def key_extractor(*args: Any, **kwargs: Any) -> Optional[str]:
 
 
 def on_invalid_key(
-    data: Dict[str, Optional[str]], verification: Optional[ApiKeyVerification]
+    data: Dict[str, Optional[str]],
+    verification: Optional[unkey.ApiKeyVerification],
 ) -> JsonResponse:
     response = {"error": "Key is invalid", **data}
 
