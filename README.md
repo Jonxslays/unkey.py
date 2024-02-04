@@ -38,7 +38,7 @@ async def main() -> None:
     client = unkey.Client(api_key=os.environ["API_KEY"])
     await client.start()
 
-    result = await client.keys.verify_key("prefix_123ABC")
+    result = await client.keys.verify_key("prefix_123ABC", os.environ["API_ID"])
 
     if result.is_ok:
         data = result.unwrap()
@@ -66,7 +66,7 @@ that's the beauty of open source.
 If you're interested in learning more about the project, consider checking out any of these links:
 
 - [Website](https://unkey.dev/)
-- [API documentation](https://docs.unkey.dev/)
+- [API documentation](https://unkey.dev/docs)
 - [Github repository](https://github.com/chronark/unkey)
 - [Discord community](https://discord.gg/TmMczTKArw)
 
