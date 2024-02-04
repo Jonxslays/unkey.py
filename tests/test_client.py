@@ -35,7 +35,13 @@ def test_empty_api_key_fails() -> None:
     with pytest.raises(ValueError) as e:
         Client("")
 
-    assert e.exconly() == "ValueError: Api key must be provided."
+    assert e.exconly() == "ValueError: Api key must not be empty."
+
+
+def test_none_api_key() -> None:
+    client = Client(None)
+
+    assert "Authorization" not in client._http._headers  # pyright: ignore
 
 
 @mock.patch("unkey.client.services.HttpService.set_api_key")

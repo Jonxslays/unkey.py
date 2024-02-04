@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Final
 
 __packagename__: Final[str] = "unkey.py"
-__version__: Final[str] = "0.6.1"
+__version__: Final[str] = "0.7.0"
 __author__: Final[str] = "Jonxslays"
 __copyright__: Final[str] = "2023-present Jonxslays"
 __description__: Final[str] = "An asynchronous Python SDK for unkey.dev."
@@ -14,6 +14,7 @@ __license__: Final[str] = "GPL-3.0"
 __git_sha__: Final[str] = "[HEAD]"
 
 from . import client
+from . import decorators
 from . import constants
 from . import errors
 from . import models
@@ -23,6 +24,7 @@ from . import serializer
 from . import services
 from . import undefined
 from .client import *
+from .decorators import *
 from .errors import *
 from .models import *
 from .result import *
@@ -34,8 +36,10 @@ from .undefined import *
 __all__ = (
     "client",
     "constants",
+    "decorators",
     "errors",
     "models",
+    "protected",
     "result",
     "routes",
     "serializer",

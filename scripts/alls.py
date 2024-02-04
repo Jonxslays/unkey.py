@@ -4,8 +4,20 @@ import typing as t
 import unkey
 
 
+_IGNORE = ("annotations", "protected")
+
+
 def should_include_module(module: str) -> bool:
-    return module != "annotations" and module[0] != "_" and module[0].upper() != module[0]
+    if module in _IGNORE:
+        return False
+
+    if (char := module[0]) == "_":
+        return False
+
+    if char.upper() == char:
+        return False
+
+    return True
 
 
 def get_modules() -> t.List[str]:

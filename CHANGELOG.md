@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.7.0 (Jan 2024)
+
+### Additions
+
+- Add `protected` decorator for verifying keys easily in web frameworks.
+
+### Changes
+
+- `Client` constructor parameter `api_key` is now optional.
+
+---
+
 ## v0.6.1 (Dec 2023)
 
 ### Changes

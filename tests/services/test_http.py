@@ -24,7 +24,7 @@ def test_init_fails_without_token() -> None:
     with pytest.raises(ValueError) as e:
         HttpService("", None, None)
 
-    assert e.exconly() == "ValueError: Api key must be provided."
+    assert e.exconly() == "ValueError: Api key must not be empty."
 
 
 def test_full_init() -> None:
