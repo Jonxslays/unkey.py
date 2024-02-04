@@ -14,9 +14,9 @@
         <link rel="prev" href="../../getting-started/result/">
       
       
-        <link rel="next" href="../errors/">
+        <link rel="next" href="../decorators/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../unkey.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.18">
     
     
@@ -97,8 +97,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="unkey.py" class="md-header__button md-logo" aria-label="unkey.py" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../unkey.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -282,8 +281,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="unkey.py" class="md-nav__button md-logo" aria-label="unkey.py" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../unkey.png" alt="logo">
 
     </a>
     unkey.py
@@ -431,6 +429,20 @@
     <li class="md-nav__item">
       <a href="../../getting-started/installation/" class="md-nav__link">
         Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/protected/" class="md-nav__link">
+        The protected decorator
       </a>
     </li>
   
@@ -607,6 +619,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorators/" class="md-nav__link">
+        decorators
+      </a>
     </li>
   
 
@@ -874,7 +900,7 @@
         <tr>
           <td><code>api_key</code></td>
           <td>
-                <code>str</code>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -882,7 +908,7 @@
             </div>
           </td>
           <td>
-              <em>required</em>
+                <code>None</code>
           </td>
         </tr>
     </tbody>
@@ -1023,7 +1049,7 @@ Defaults to <code>https://api.unkey.dev</code>.</p>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a>
 <a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a>        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>        <span class="n">api_key</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36"></a>        <span class="o">*</span><span class="p">,</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37"></a>        <span class="n">api_version</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38"></a>        <span class="n">api_base_url</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

@@ -14,7 +14,7 @@
       
         <link rel="next" href="contributing/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="unkey.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.18">
     
     
@@ -95,8 +95,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="unkey.py" class="md-header__button md-logo" aria-label="unkey.py" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="unkey.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -280,8 +279,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="unkey.py" class="md-nav__button md-logo" aria-label="unkey.py" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="unkey.png" alt="logo">
 
     </a>
     unkey.py
@@ -539,6 +537,20 @@
   
   
     <li class="md-nav__item">
+      <a href="getting-started/protected/" class="md-nav__link">
+        The protected decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="getting-started/client/" class="md-nav__link">
         Using the client
       </a>
@@ -604,6 +616,20 @@
     <li class="md-nav__item">
       <a href="reference/client/" class="md-nav__link">
         client
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/decorators/" class="md-nav__link">
+        decorators
       </a>
     </li>
   
@@ -848,7 +874,7 @@
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">client</span> <span class="o">=</span> <span class="n">unkey</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;API_KEY&quot;</span><span class="p">])</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">verify_key</span><span class="p">(</span><span class="s2">&quot;prefix_123ABC&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">verify_key</span><span class="p">(</span><span class="s2">&quot;prefix_123ABC&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;API_ID&quot;</span><span class="p">])</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">:</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">unwrap</span><span class="p">()</span>
@@ -872,7 +898,7 @@ that's the beauty of open source.</p>
 <p>If you're interested in learning more about the project, consider checking out any of these links:</p>
 <ul>
 <li><a href="https://unkey.dev/">Website</a></li>
-<li><a href="https://docs.unkey.dev/">API documentation</a></li>
+<li><a href="https://unkey.dev/docs">API documentation</a></li>
 <li><a href="https://github.com/chronark/unkey">Github repository</a></li>
 <li><a href="https://discord.gg/TmMczTKArw">Discord community</a></li>
 </ul>
