@@ -78,3 +78,5 @@ unkey.py is open to contributions. Check out the
 ## License
 
 unkey.py is licensed under the [GPLv3 License](https://github.com/Jonxslays/unkey.py/blob/master/LICENSE).
+
+The `unkey.undefined` module is licensed under the `MIT License`.
