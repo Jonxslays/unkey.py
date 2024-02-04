@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.7.1 (Feb 2024)
+
+### Fixes
+
+- Fix invalid docs link.
+
+---
+
 ## v0.7.0 (Feb 2024)
 
 ### Additions
