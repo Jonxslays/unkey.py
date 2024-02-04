@@ -24,8 +24,9 @@ import typing as t
 
 __all__ = ("UndefinedNoneOr", "UndefinedOr", "UNDEFINED")
 
-# This code was pulled almost line for line from https://github.com/hikari-py/hikari
+# This code is almost line for line from https://github.com/hikari-py/hikari
 # Thanks to the amazing developers on that project <3
+
 
 class Undefined:
     """Represents an undefined value - without being None."""
