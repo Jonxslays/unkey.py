@@ -51,6 +51,13 @@ class Client:
 
         return service(self._http, self._serializer)  # type: ignore[return-value]
 
+    async def __aenter__(self) -> Client:
+        await self.start()
+        return self
+
+    async def __aexit__(self, *_args: t.Any, **_kwargs: t.Any) -> None:
+        await self.close()
+
     @property
     def keys(self) -> services.KeyService:
         """The key service used to make key related requests."""
