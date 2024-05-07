@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.7.2 (May 2024)
+
+### Fixes
+
+- Fix race condition for concurrent requests using the `protected` decorator.
+
+### Additions
+
+- The `Client` can now be used as an async context manager which starts
+  and closes the client automatically.
+
+### Changes
+
+- The `InvalidKeyHandlerT` and `ExcHandlerT` types no longer include `Optional`,
+  and instead are wrapped in `Optional` in the function signature.
+
+---
+
 ## v0.7.1 (Feb 2024)
 
 ### Fixes

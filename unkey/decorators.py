@@ -26,18 +26,18 @@ ExtractorT = Callable[[Tuple[Any], Dict[str, Any]], Optional[str]]
 functions `*args` and `**kwargs`.
 """
 
-InvalidKeyHandlerT = Optional[Callable[[Dict[str, Any], Optional[models.ApiKeyVerification]], Any]]
+InvalidKeyHandlerT = Callable[[Dict[str, Any], Optional[models.ApiKeyVerification]], Any]
 """The type of a callback used to handle cases where the key was invalid."""
 
-ExcHandlerT = Optional[Callable[[Exception], Any]]
+ExcHandlerT = Callable[[Exception], Any]
 """The type of a callback used to handle exceptions during verification."""
 
 
 def protected(
     api_id: str,
     key_extractor: ExtractorT,
-    on_invalid_key: InvalidKeyHandlerT = None,
-    on_exc: ExcHandlerT = None,
+    on_invalid_key: Optional[InvalidKeyHandlerT] = None,
+    on_exc: Optional[ExcHandlerT] = None,
 ) -> DecoratorT:
     """A framework agnostic second order decorator that is used to protect
     api routes with Unkey key verification.
@@ -82,7 +82,6 @@ def protected(
             altered by `on_invalid_key` if it was passed. If verification
             succeeds the original functions return value is returned.
     """
-    _client = client.Client()
 
     def _on_invalid_key(
         data: Dict[str, Any], verification: Optional[models.ApiKeyVerification] = None
@@ -108,9 +107,8 @@ def protected(
                     message = "Failed to extract API key"
                     return _on_invalid_key({"code": None, "message": message})
 
-                await _client.start()
-                result = await _client.keys.verify_key(key, api_id)
-                await _client.close()
+                async with client.Client() as c:
+                    result = await c.keys.verify_key(key, api_id)
 
                 if result.is_err:
                     err = result.unwrap_err()
