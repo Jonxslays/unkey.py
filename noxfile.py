@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import functools
+import platform
 from typing import Callable
 from pathlib import Path
 
@@ -75,10 +76,15 @@ def types(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("black", "len8")
+@install("black")
 def formatting(session: nox.Session) -> None:
     session.run("black", ".", "--check")
-    session.run("len8")
+
+    major, minor, *_ = platform.python_version_tuple()
+    if major == "3" and int(minor) < 12:
+        # This is a hack but it doesnt support python 3.12
+        session.install(DEPS["len8"])
+        session.run("len8")
 
 
 @nox.session(reuse_venv=True)
