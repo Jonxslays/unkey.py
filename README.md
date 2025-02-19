@@ -2,6 +2,8 @@
 
 An asynchronous Python SDK for [unkey.dev](https://unkey.dev/).
 
+NOTE: This repository is archived - Unkey now generates the python SDK programattically as of versions >= 0.8.0.
+
 ## Documentation
 
 - [Stable](https://jonxslays.github.io/unkey.py/)
